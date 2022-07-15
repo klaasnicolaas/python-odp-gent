@@ -37,6 +37,7 @@ pip install odp-gent
 You can read the following data with this package:
 
 - Parking garages occupancy (12 locations)
+- Park and Ride occupancy (5 locations)
 
 ## Usage
 
@@ -56,7 +57,9 @@ async def main() -> None:
     """Show example on using the Open Data API client."""
     async with ODPGent() as client:
         garages = await client.garages(limit=12)
+        park_and_rides = await client.park_and_rides(limit=5)
         print(garages)
+        print(park_and_rides)
 
 
 if __name__ == "__main__":
