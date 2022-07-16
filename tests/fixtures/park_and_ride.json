@@ -1,0 +1,80 @@
+{
+    "nhits": 5,
+    "parameters": {
+        "dataset": "real-time-bezetting-pr-gent",
+        "rows": 2,
+        "start": 0,
+        "format": "json",
+        "timezone": "UTC"
+    },
+    "records": [
+        {
+            "datasetid": "real-time-bezetting-pr-gent",
+            "recordid": "3f38ec867beb355b795247f416c782cdb5695338",
+            "fields": {
+                "location": [
+                    51.0985019636,
+                    3.71138627257
+                ],
+                "longitude": "3.71138627257",
+                "isopennow": 1,
+                "lastupdate": "2022-07-15T13:30:42+02:00",
+                "gentse_feesten": "False",
+                "freeparking": 1,
+                "name": "P+R Wondelgem",
+                "occupancytrend": "unknown",
+                "latitude": "51.0985019636",
+                "occupation": 70,
+                "type": "offStreetParkingGround",
+                "numberofspaces": 62,
+                "temporaryclosed": 0,
+                "urllinkaddress": "https://stad.gent/nl/mobiliteit-openbare-werken/parkeren/park-and-ride-pr/pr-wondelgem-industrieweg",
+                "availablespaces": 18,
+                "operatorinformation": "Mobiliteitsbedrijf Gent",
+                "openingtimesdescription": "24/7"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.71138627257,
+                    51.0985019636
+                ]
+            },
+            "record_timestamp": "2022-07-15T12:32:00.431Z"
+        },
+        {
+            "datasetid": "real-time-bezetting-pr-gent",
+            "recordid": "ab99b16b828b42be404ad006b86ffd476ef2a708",
+            "fields": {
+                "location": [
+                    51.0674048936,
+                    3.68175794804
+                ],
+                "longitude": "3.68175794804",
+                "isopennow": 1,
+                "lastupdate": "2022-07-15T14:31:01+02:00",
+                "gentse_feesten": "True",
+                "freeparking": 1,
+                "name": "P+R Bourgoyen",
+                "occupancytrend": "unknown",
+                "latitude": "51.0674048936",
+                "occupation": 15,
+                "type": "offStreetParkingGround",
+                "numberofspaces": 250,
+                "temporaryclosed": 0,
+                "urllinkaddress": "https://stad.gent/nl/mobiliteit-openbare-werken/parkeren/park-and-ride-pr/pr-bourgoyen",
+                "availablespaces": 211,
+                "operatorinformation": "Mobiliteitsbedrijf Gent",
+                "openingtimesdescription": "24/7"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.68175794804,
+                    51.0674048936
+                ]
+            },
+            "record_timestamp": "2022-07-15T12:32:00.431Z"
+        }
+    ]
+}

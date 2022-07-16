@@ -1,0 +1,82 @@
+{
+    "nhits": 12,
+    "parameters": {
+        "dataset": "bezetting-parkeergarages-real-time",
+        "rows": 2,
+        "start": 0,
+        "format": "json",
+        "timezone": "UTC"
+    },
+    "records": [
+        {
+            "datasetid": "bezetting-parkeergarages-real-time",
+            "recordid": "72dc32bd8fe81dae0b9602a038aaeea392d64c30",
+            "fields": {
+                "occupation": 42,
+                "isopennow": 1,
+                "operatorinformation": "Mobiliteitsbedrijf Gent",
+                "locationanddimension": "{\"specificAccessInformation\": [\"inrit\"], \"level\": \"0\", \"roadNumber\": \"?\", \"roadName\": \"Sint-Michielsplein 8\\n9000 Gent\", \"contactDetailsTelephoneNumber\": \"Tel.: 09 266 29 20\", \"coordinatesForDisplay\": {\"latitude\": 51.05311004768356, \"longitude\": 3.719727740000235}}",
+                "occupancytrend": "unknown",
+                "availablecapacity": 181,
+                "urllinkaddress": "https://stad.gent/nl/mobiliteit-openbare-werken/parkeren/parkings-gent/parking-sint-michiels",
+                "id": "https://stad.gent/nl/mobiliteit-openbare-werken/parkeren/parkings-gent/parking-sint-michiels",
+                "description": "Ondergrondse parkeergarage Sint-Michiels in Gent",
+                "lastupdate": "2022-07-15T13:36:45+02:00",
+                "name": "Sint-Michiels",
+                "openingtimesdescription": "24/7",
+                "temporaryclosed": 0,
+                "type": "carPark",
+                "categorie": "parking in LEZ",
+                "totalcapacity": 315,
+                "freeparking": 0,
+                "location": [
+                    51.05311004768356,
+                    3.719727740000235
+                ]
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.719727740000235,
+                    51.05311004768356
+                ]
+            },
+            "record_timestamp": "2022-07-15T11:37:01.573Z"
+        },
+        {
+            "datasetid": "bezetting-parkeergarages-real-time",
+            "recordid": "713cf9789dc799f115348ac45bbae7a4df89a13b",
+            "fields": {
+                "occupation": 60,
+                "isopennow": 1,
+                "operatorinformation": "Mobiliteitsbedrijf Gent",
+                "locationanddimension": "{\"specificAccessInformation\": [\"inrit\"], \"level\": \"0\", \"roadNumber\": \"?\", \"roadName\": \"Seminariestraat 9\\n9000 Gent\", \"contactDetailsTelephoneNumber\": \"Tel.: 09 266 29 50\", \"coordinatesForDisplay\": {\"latitude\": 51.05215838523151, \"longitude\": 3.7298928896398924}}",
+                "occupancytrend": "unknown",
+                "availablecapacity": 174,
+                "urllinkaddress": "https://stad.gent/nl/mobiliteit-openbare-werken/parkeren/parkings-gent/parking-reep",
+                "id": "https://stad.gent/nl/mobiliteit-openbare-werken/parkeren/parkings-gent/parking-reep",
+                "description": "? parkeergarage Reep in Gent",
+                "lastupdate": "2022-07-15T13:36:45+02:00",
+                "name": "Reep",
+                "openingtimesdescription": "24/7",
+                "temporaryclosed": 0,
+                "type": "carPark",
+                "categorie": "parking in LEZ",
+                "totalcapacity": 439,
+                "freeparking": 0,
+                "location": [
+                    51.05215838523151,
+                    3.7298928896398924
+                ]
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.7298928896398924,
+                    51.05215838523151
+                ]
+            },
+            "record_timestamp": "2022-07-15T11:37:01.573Z"
+        }
+    ]
+}
