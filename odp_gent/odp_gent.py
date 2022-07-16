@@ -15,6 +15,7 @@ from yarl import URL
 from .exceptions import ODPGentConnectionError, ODPGentError
 from .models import Garage, ParkAndRide
 
+
 @dataclass
 class ODPGent:
     """Main class for handling data fetchting from Open Data Platform of Gent."""
@@ -29,7 +30,7 @@ class ODPGent:
         uri: str,
         *,
         method: str = hdrs.METH_GET,
-        params: dict[str, Any] | None = None
+        params: dict[str, Any] | None = None,
     ) -> Any:
         """Handle a request to the Open Data Platform API of Gent.
 
@@ -45,6 +46,7 @@ class ODPGent:
         Raises:
             ODPGentConnectionError: Timeout occurred while
                 connecting to the Urban Data Platform API.
+            ODPGentError: If the data is not valid.
         """
         version = metadata.version(__package__)
         url = URL.build(
@@ -59,7 +61,7 @@ class ODPGent:
         if self.session is None:
             self.session = aiohttp.ClientSession()
             self._close_session = True
-            
+
         try:
             async with async_timeout.timeout(self.request_timeout):
                 response = await self.session.request(
@@ -101,17 +103,16 @@ class ODPGent:
         results: list[Garage] = []
         locations = await self._request(
             "search/",
-            params={
-                "dataset": "bezetting-parkeergarages-real-time",
-                "rows": limit
-            },
+            params={"dataset": "bezetting-parkeergarages-real-time", "rows": limit},
         )
 
         for item in locations["records"]:
-            results.append(Garage.from_json(item))
+            results.append(Garage.from_dict(item))
         return results
 
-    async def park_and_rides(self, limit: int = 10, gentse_feesten: str = None) -> list[ParkAndRide]:
+    async def park_and_rides(
+        self, limit: int = 10, gentse_feesten: None = None
+    ) -> list[ParkAndRide]:
         """Get list of Park and Ride locations.
 
         Args:
@@ -122,16 +123,21 @@ class ODPGent:
             A list of ParkAndRide objects.
         """
         results: list[ParkAndRide] = []
-        params: dict = {"dataset": "real-time-bezetting-pr-gent","rows": limit}
+        params: dict[str, Any] = {
+            "dataset": "real-time-bezetting-pr-gent",
+            "rows": limit,
+        }
+
         if gentse_feesten is not None:
             params["refine.gentse_feesten"] = gentse_feesten
+
         locations = await self._request(
             "search/",
             params=params,
         )
 
         for item in locations["records"]:
-            results.append(ParkAndRide.from_json(item))
+            results.append(ParkAndRide.from_dict(item))
         return results
 
     async def close(self) -> None:

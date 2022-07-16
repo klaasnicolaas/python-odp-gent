@@ -11,12 +11,14 @@ async def main() -> None:
     async with ODPGent() as client:
         garages = await client.garages(limit=12)
         park_and_rides = await client.park_and_rides(limit=5)
-        # print(park_and_rides)
+        print(garages)
+        print(park_and_rides)
 
-        index: int
-        for index, item in enumerate(garages, 1):
+        count: int
+        for index, item in enumerate(park_and_rides, 1):
+            count = index
             print(item)
-        print(f"{index} locations found")
+        print(f"{count} locations found")
 
 
 if __name__ == "__main__":

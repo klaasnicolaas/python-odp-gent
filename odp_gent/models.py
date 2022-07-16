@@ -29,11 +29,11 @@ class Garage:
     updated_at: datetime
 
     @classmethod
-    def from_json(cls, data: dict[str, Any]) -> Garage:
-        """Return a Garage object from a JSON dictionary.
+    def from_dict(cls, data: dict[str, Any]) -> Garage:
+        """Return a Garage object from a dictionary.
 
         Args:
-            data: The JSON data from the API.
+            data: The data from the API.
 
         Returns:
             A Garage object.
@@ -42,7 +42,7 @@ class Garage:
         attr = data["fields"]
         geo = data["geometry"]["coordinates"]
         return cls(
-            garage_id=data.get("recordid"),
+            garage_id=str(data.get("recordid")),
             name=attr.get("name"),
             parking_type=attr.get("type"),
             url=attr.get("urllinkaddress"),
@@ -52,7 +52,10 @@ class Garage:
             free_space=attr.get("availablecapacity"),
             total_capacity=attr.get("totalcapacity"),
             availability_pct=round(
-                (float(attr.get("availablecapacity")) / float(attr.get("totalcapacity")))
+                (
+                    float(attr.get("availablecapacity"))
+                    / float(attr.get("totalcapacity"))
+                )
                 * 100,
                 1,
             ),
@@ -87,17 +90,17 @@ class ParkAndRide:
     updated_at: datetime
 
     @classmethod
-    def from_json(cls, data: dict[str, Any]) -> ParkAndRide:
-        """Return a ParkAndRide object from a JSON dictionary.
+    def from_dict(cls, data: dict[str, Any]) -> ParkAndRide:
+        """Return a ParkAndRide object from a dictionary.
 
         Args:
-            data: The JSON data from the API.
+            data: The data from the API.
 
         Returns:
             A ParkAndRide object.
         """
 
-        def convert_bool(value) -> bool:
+        def convert_bool(value: str) -> bool:
             """Convert a string to a boolean.
 
             Args:
@@ -113,7 +116,7 @@ class ParkAndRide:
         attr = data["fields"]
         geo = data["geometry"]["coordinates"]
         return cls(
-            spot_id=data.get("recordid"),
+            spot_id=str(data.get("recordid")),
             name=attr.get("name"),
             parking_type=attr.get("type"),
             url=attr.get("urllinkaddress"),
