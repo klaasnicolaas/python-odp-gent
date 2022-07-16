@@ -34,7 +34,7 @@ pip install odp-gent
 
 ## Data
 
-You can read the following data with this package:
+You can read the following datasets with this package:
 
 - Parking garages occupancy (12 locations)
 - Park and Ride occupancy (5 locations)
@@ -44,6 +44,7 @@ You can read the following data with this package:
 There are a number of variables you can set to retrieve the data:
 
 - **limit** (default: 10) - How many results you want to retrieve.
+- **gentse_feesten** - Whether a park and ride location is used for the [Gentse Feesten](https://gentsefeesten.stad.gent).
 
 ### Example
 
@@ -57,7 +58,7 @@ async def main() -> None:
     """Show example on using the Open Data API client."""
     async with ODPGent() as client:
         garages = await client.garages(limit=12)
-        park_and_rides = await client.park_and_rides(limit=5)
+        park_and_rides = await client.park_and_rides(limit=5, gentse_feesten="True")
         print(garages)
         print(park_and_rides)
 
@@ -162,7 +163,7 @@ SOFTWARE.
 [code-quality]: https://lgtm.com/projects/g/klaasnicolaas/python-odp-gent/context:python
 [commits-shield]: https://img.shields.io/github/commit-activity/y/klaasnicolaas/python-odp-gent.svg
 [commits-url]: https://github.com/klaasnicolaas/python-odp-gent/commits/main
-[codecov-shield]: https://codecov.io/gh/klaasnicolaas/python-odp-gent/branch/main/graph/badge.svg?token=4Y4YAYHR2D
+[codecov-shield]: https://codecov.io/gh/klaasnicolaas/python-odp-gent/branch/main/graph/badge.svg?token=5JNbz4akUL
 [codecov-url]: https://codecov.io/gh/klaasnicolaas/python-odp-gent
 [forks-shield]: https://img.shields.io/github/forks/klaasnicolaas/python-odp-gent.svg
 [forks-url]: https://github.com/klaasnicolaas/python-odp-gent/network/members
@@ -171,7 +172,7 @@ SOFTWARE.
 [license-shield]: https://img.shields.io/github/license/klaasnicolaas/python-odp-gent.svg
 [last-commit-shield]: https://img.shields.io/github/last-commit/klaasnicolaas/python-odp-gent.svg
 [maintenance-shield]: https://img.shields.io/maintenance/yes/2022.svg
-[maintainability-shield]: https://api.codeclimate.com/v1/badges/5041849456b7348f3bc7/maintainability
+[maintainability-shield]: https://api.codeclimate.com/v1/badges/ceb27fb15cf0e485dc23/maintainability
 [maintainability-url]: https://codeclimate.com/github/klaasnicolaas/python-odp-gent/maintainability
 [project-stage-shield]: https://img.shields.io/badge/project%20stage-experimental-yellow.svg
 [pypi]: https://pypi.org/project/odp-gent/
