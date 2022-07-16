@@ -32,21 +32,66 @@ A python package with which you can retrieve data from the Open Data Platform of
 pip install odp-gent
 ```
 
-## Data
+## Datasets
 
 You can read the following datasets with this package:
 
 - Parking garages occupancy (12 locations)
 - Park and Ride occupancy (5 locations)
 
-## Usage
+<details>
+    <summary>Click here to get more details</summary>
 
-There are a number of variables you can set to retrieve the data:
+### Parking garages
+
+Parameters:
+
+- **limit** (default: 10) - How many results you want to retrieve.
+
+| Variable | Type | Description |
+| :------- | :--- | :---------- |
+| **garage_id** | string | The id of the garage |
+| **name** | string | The name of the garage |
+| **parking_type** | string | The type of parking |
+| **url** | string | The url with more information about the garage |
+| **is_open** | boolean | Whether the garage is open or not |
+| **free_parking** | boolean | Whether there is free parking or not |
+| **temporary_closed** | boolean | Whether the garage is temporarily closed or not |
+| **free_space** | integer | The amount of free parking spaces |
+| **total_capacity** | integer | The total capacity of the garage |
+| **availability_pct** | float | The percentage of free parking spaces |
+| **occupancy_pct** | integer | The percentage of occupied parking spaces |
+| **longitude** | float | The longitude of the garage |
+| **latitude** | float | The latitude of the garage |
+| **updated_at** | datetime | The last time the data was updated |
+
+### Park and Ride
+
+Parameters:
 
 - **limit** (default: 10) - How many results you want to retrieve.
 - **gentse_feesten** - Whether a park and ride location is used for the [Gentse Feesten](https://gentsefeesten.stad.gent).
 
-### Example
+| Variable | Type | Description |
+| :------- | :--- | :---------- |
+| **spot_id** | string | The id of the park and ride |
+| **name** | string | The name of the park and ride |
+| **parking_type** | string | The type of parking |
+| **url** | string | The url with more information about the park and ride |
+| **is_open** | boolean | Whether the park and ride is open or not |
+| **free_parking** | boolean | Whether there is free parking or not |
+| **temporary_closed** | boolean | Whether the park and ride is temporarily closed or not |
+| **gentse_feesten** | boolean | Whether the park and ride is used for the [Gentse Feesten](https://gentsefeesten.stad.gent) |
+| **free_space** | integer | The amount of free parking spaces |
+| **total_capacity** | integer | The total capacity of the park and ride |
+| **availability_pct** | float | The percentage of free parking spaces |
+| **occupancy_pct** | integer | The percentage of occupied parking spaces |
+| **longitude** | float | The longitude of the park and ride |
+| **latitude** | float | The latitude of the park and ride |
+| **updated_at** | datetime | The last time the data was updated |
+</details>
+
+## Example
 
 ```python
 import asyncio
@@ -71,7 +116,9 @@ if __name__ == "__main__":
 
 [NIPKaart.nl][nipkaart]
 
-A website that provides insight into where disabled parking spaces are, based on data from users and municipalities. Operates mainly in the Netherlands, but also has plans to process data from abroad.
+A website that provides insight into where disabled parking spaces are, based
+on data from users and municipalities. Operates mainly in the Netherlands, but
+also has plans to process data from abroad.
 
 ## Contributing
 
