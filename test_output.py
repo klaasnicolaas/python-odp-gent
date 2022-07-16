@@ -10,7 +10,7 @@ async def main() -> None:
     """Show example on using the Gent API client."""
     async with ODPGent() as client:
         garages = await client.garages(limit=12)
-        park_and_rides = await client.park_and_rides(limit=5)
+        park_and_rides = await client.park_and_rides(limit=5, gentse_feesten="True")
         print(garages)
         print(park_and_rides)
 

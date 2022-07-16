@@ -111,7 +111,7 @@ class ODPGent:
         return results
 
     async def park_and_rides(
-        self, limit: int = 10, gentse_feesten: None = None
+        self, limit: int = 10, gentse_feesten: str | None = None
     ) -> list[ParkAndRide]:
         """Get list of Park and Ride locations.
 
