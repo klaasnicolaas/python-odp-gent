@@ -9,7 +9,7 @@ readme = "README.md"
 homepage = "https://github.com/klaasnicolaas/python-odp-gent"
 repository = "https://github.com/klaasnicolaas/python-odp-gent"
 documentation = "https://github.com/klaasnicolaas/python-odp-gent"
-keywords = ["open", "data", "platform", "gent", "api", "async", "client"]
+keywords = ["open", "data", "platform", "parking", "gent", "api", "async", "client"]
 classifiers = [
     "Framework :: AsyncIO",
     "Intended Audience :: Developers",

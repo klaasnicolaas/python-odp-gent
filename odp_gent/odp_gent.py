@@ -45,7 +45,7 @@ class ODPGent:
 
         Raises:
             ODPGentConnectionError: Timeout occurred while
-                connecting to the Urban Data Platform API.
+                connecting to the Open Data Platform API.
             ODPGentError: If the data is not valid.
         """
         version = metadata.version(__package__)
