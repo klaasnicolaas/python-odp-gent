@@ -1,4 +1,5 @@
-## Python - ODP Gent Client
+<!-- Banner -->
+![alt Banner of the odp gent package](https://raw.githubusercontent.com/klaasnicolaas/python-odp-gent/main/assets/header_odp_gent-min.png)
 
 <!-- PROJECT SHIELDS -->
 [![GitHub Release][releases-shield]][releases]
@@ -8,10 +9,10 @@
 [![License][license-shield]](LICENSE)
 
 [![GitHub Activity][commits-shield]][commits-url]
-[![Forks][forks-shield]][forks-url]
+[![PyPi Downloads][downloads-shield]][downloads-url]
+[![GitHub Last Commit][last-commit-shield]][commits-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-[![GitHub Last Commit][last-commit-shield]][commits-url]
 
 [![Code Quality][code-quality-shield]][code-quality]
 [![Maintainability][maintainability-shield]][maintainability-url]
@@ -212,8 +213,8 @@ SOFTWARE.
 [commits-url]: https://github.com/klaasnicolaas/python-odp-gent/commits/main
 [codecov-shield]: https://codecov.io/gh/klaasnicolaas/python-odp-gent/branch/main/graph/badge.svg?token=5JNbz4akUL
 [codecov-url]: https://codecov.io/gh/klaasnicolaas/python-odp-gent
-[forks-shield]: https://img.shields.io/github/forks/klaasnicolaas/python-odp-gent.svg
-[forks-url]: https://github.com/klaasnicolaas/python-odp-gent/network/members
+[downloads-shield]: https://img.shields.io/pypi/dm/odp-gent
+[downloads-url]: https://pypistats.org/packages/odp-gent
 [issues-shield]: https://img.shields.io/github/issues/klaasnicolaas/python-odp-gent.svg
 [issues-url]: https://github.com/klaasnicolaas/python-odp-gent/issues
 [license-shield]: https://img.shields.io/github/license/klaasnicolaas/python-odp-gent.svg
