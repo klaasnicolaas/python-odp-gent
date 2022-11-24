@@ -1,4 +1,5 @@
-## Python - ODP Gent Client
+<!-- Banner -->
+![alt Banner of the odp gent package](https://raw.githubusercontent.com/klaasnicolaas/python-odp-gent/main/assets/header_odp_gent-min.png)
 
 <!-- PROJECT SHIELDS -->
 [![GitHub Release][releases-shield]][releases]
