@@ -222,7 +222,7 @@ SOFTWARE.
 [maintenance-shield]: https://img.shields.io/maintenance/yes/2022.svg
 [maintainability-shield]: https://api.codeclimate.com/v1/badges/ceb27fb15cf0e485dc23/maintainability
 [maintainability-url]: https://codeclimate.com/github/klaasnicolaas/python-odp-gent/maintainability
-[project-stage-shield]: https://img.shields.io/badge/project%20stage-experimental-yellow.svg
+[project-stage-shield]: https://img.shields.io/badge/project%20stage-production%20ready-brightgreen.svg
 [pypi]: https://pypi.org/project/odp-gent/
 [python-versions-shield]: https://img.shields.io/pypi/pyversions/odp-gent
 [typing-shield]: https://github.com/klaasnicolaas/python-odp-gent/actions/workflows/typing.yaml/badge.svg

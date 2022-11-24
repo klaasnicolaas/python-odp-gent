@@ -11,6 +11,7 @@ repository = "https://github.com/klaasnicolaas/python-odp-gent"
 documentation = "https://github.com/klaasnicolaas/python-odp-gent"
 keywords = ["open", "data", "platform", "parking", "gent", "api", "async", "client"]
 classifiers = [
+    "Development Status :: 5 - Production/Stable",
     "Framework :: AsyncIO",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
