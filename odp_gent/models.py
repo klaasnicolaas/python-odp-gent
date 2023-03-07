@@ -29,16 +29,17 @@ class Garage:
     updated_at: datetime
 
     @classmethod
-    def from_dict(cls, data: dict[str, Any]) -> Garage:
+    def from_dict(cls: type[Garage], data: dict[str, Any]) -> Garage:
         """Return a Garage object from a dictionary.
 
         Args:
+        ----
             data: The data from the API.
 
         Returns:
+        -------
             A Garage object.
         """
-
         attr = data["fields"]
         geo = data["geometry"]["coordinates"]
         return cls(
@@ -90,13 +91,15 @@ class ParkAndRide:
     updated_at: datetime
 
     @classmethod
-    def from_dict(cls, data: dict[str, Any]) -> ParkAndRide:
+    def from_dict(cls: type[ParkAndRide], data: dict[str, Any]) -> ParkAndRide:
         """Return a ParkAndRide object from a dictionary.
 
         Args:
+        ----
             data: The data from the API.
 
         Returns:
+        -------
             A ParkAndRide object.
         """
 
@@ -104,9 +107,11 @@ class ParkAndRide:
             """Convert a string to a boolean.
 
             Args:
+            ----
                 value: The string to convert.
 
             Returns:
+            -------
                 A boolean.
             """
             if value == "True":

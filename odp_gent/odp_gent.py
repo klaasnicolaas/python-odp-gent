@@ -5,11 +5,11 @@ import asyncio
 import socket
 from dataclasses import dataclass
 from importlib import metadata
-from typing import Any
+from typing import Any, cast
 
-import aiohttp
 import async_timeout
-from aiohttp import hdrs
+from aiohttp import ClientError, ClientSession
+from aiohttp.hdrs import METH_GET
 from yarl import URL
 
 from .exceptions import ODPGentConnectionError, ODPGentError
@@ -21,7 +21,7 @@ class ODPGent:
     """Main class for handling data fetchting from Open Data Platform of Gent."""
 
     request_timeout: float = 10.0
-    session: aiohttp.client.ClientSession | None = None
+    session: ClientSession | None = None
 
     _close_session: bool = False
 
@@ -29,28 +29,33 @@ class ODPGent:
         self,
         uri: str,
         *,
-        method: str = hdrs.METH_GET,
+        method: str = METH_GET,
         params: dict[str, Any] | None = None,
     ) -> Any:
         """Handle a request to the Open Data Platform API of Gent.
 
         Args:
+        ----
             uri: Request URI, without '/', for example, 'status'
             method: HTTP method to use, for example, 'GET'
             params: Extra options to improve or limit the response.
 
         Returns:
+        -------
             A Python dictionary (text) with the response from
             the Open Data Platform API of Gent.
 
         Raises:
+        ------
             ODPGentConnectionError: Timeout occurred while
                 connecting to the Open Data Platform API.
             ODPGentError: If the data is not valid.
         """
         version = metadata.version(__package__)
         url = URL.build(
-            scheme="https", host="data.stad.gent", path="/api/records/1.0/"
+            scheme="https",
+            host="data.stad.gent",
+            path="/api/records/1.0/",
         ).join(URL(uri))
 
         headers = {
@@ -59,7 +64,7 @@ class ODPGent:
         }
 
         if self.session is None:
-            self.session = aiohttp.ClientSession()
+            self.session = ClientSession()
             self._close_session = True
 
         try:
@@ -73,31 +78,36 @@ class ODPGent:
                 )
                 response.raise_for_status()
         except asyncio.TimeoutError as exception:
+            msg = "Timeout occurred while connecting to the Open Data Platform API."
             raise ODPGentConnectionError(
-                "Timeout occurred while connecting to the Open Data Platform API."
+                msg,
             ) from exception
-        except (aiohttp.ClientError, socket.gaierror) as exception:
+        except (ClientError, socket.gaierror) as exception:
+            msg = "Error occurred while communicating with Open Data Platform API."
             raise ODPGentConnectionError(
-                "Error occurred while communicating with Open Data Platform API."
+                msg,
             ) from exception
 
         content_type = response.headers.get("Content-Type", "")
         if "application/json" not in content_type:
             text = await response.text()
+            msg = "Unexpected content type response from the Open Data Platform API"
             raise ODPGentError(
-                "Unexpected content type response from the Open Data Platform API",
+                msg,
                 {"Content-Type": content_type, "Response": text},
             )
 
-        return await response.json()
+        return cast(dict[str, Any], await response.json())
 
     async def garages(self, limit: int = 10) -> list[Garage]:
         """Get list of parking garages.
 
         Args:
+        ----
             limit: Maximum number of garages to return.
 
         Returns:
+        -------
             A list of Garage objects.
         """
         results: list[Garage] = []
@@ -111,15 +121,19 @@ class ODPGent:
         return results
 
     async def park_and_rides(
-        self, limit: int = 10, gentse_feesten: str | None = None
+        self,
+        limit: int = 10,
+        gentse_feesten: str | None = None,
     ) -> list[ParkAndRide]:
         """Get list of Park and Ride locations.
 
         Args:
+        ----
             limit: Maximum number of garages to return.
             gentse_feesten: Filter by Gentse Feesten.
 
         Returns:
+        -------
             A list of ParkAndRide objects.
         """
         results: list[ParkAndRide] = []
@@ -148,7 +162,8 @@ class ODPGent:
     async def __aenter__(self) -> ODPGent:
         """Async enter.
 
-        Returns:
+        Returns
+        -------
             The Open Data Platform Gent object.
         """
         return self
@@ -157,6 +172,7 @@ class ODPGent:
         """Async exit.
 
         Args:
+        ----
             _exc_info: Exec type.
         """
         await self.close()
