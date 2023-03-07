@@ -1,6 +1,6 @@
 """Test the models."""
-import aiohttp
 import pytest
+from aiohttp import ClientSession
 from aresponses import ResponsesMockServer
 
 from odp_gent import Garage, ODPGent, ParkAndRide
@@ -21,7 +21,7 @@ async def test_all_garages(aresponses: ResponsesMockServer) -> None:
             text=load_fixtures("garages.json"),
         ),
     )
-    async with aiohttp.ClientSession() as session:
+    async with ClientSession() as session:
         client = ODPGent(session=session)
         spaces: list[Garage] = await client.garages()
         assert spaces is not None
@@ -32,7 +32,6 @@ async def test_all_garages(aresponses: ResponsesMockServer) -> None:
             assert item.latitude is not None
 
 
-@pytest.mark.asyncio
 async def test_park_and_rides(aresponses: ResponsesMockServer) -> None:
     """Test park and ride spaces function."""
     aresponses.add(
@@ -45,7 +44,7 @@ async def test_park_and_rides(aresponses: ResponsesMockServer) -> None:
             text=load_fixtures("park_and_ride.json"),
         ),
     )
-    async with aiohttp.ClientSession() as session:
+    async with ClientSession() as session:
         client = ODPGent(session=session)
         spaces: list[ParkAndRide] = await client.park_and_rides()
         assert spaces is not None
@@ -57,7 +56,6 @@ async def test_park_and_rides(aresponses: ResponsesMockServer) -> None:
             assert isinstance(item.latitude, float)
 
 
-@pytest.mark.asyncio
 async def test_filter_park_and_rides(aresponses: ResponsesMockServer) -> None:
     """Test park and ride spaces filter function."""
     aresponses.add(
@@ -70,7 +68,7 @@ async def test_filter_park_and_rides(aresponses: ResponsesMockServer) -> None:
             text=load_fixtures("park_and_ride.json"),
         ),
     )
-    async with aiohttp.ClientSession() as session:
+    async with ClientSession() as session:
         client = ODPGent(session=session)
         spaces: list[ParkAndRide] = await client.park_and_rides(gentse_feesten="True")
         assert spaces is not None
