@@ -37,8 +37,9 @@ pip install odp-gent
 
 You can read the following datasets with this package:
 
-- Parking garages occupancy (12 locations)
-- Park and Ride occupancy (5 locations)
+- [Parking garages occupancy][garages] (12 locations)
+- [Park and Ride occupancy][parkandride] (5 locations)
+- [BlueBike locations][bluebike] (6 locations)
 
 <details>
     <summary>Click here to get more details</summary>
@@ -90,6 +91,19 @@ Parameters:
 | `longitude` | float | The longitude of the park and ride |
 | `latitude` | float | The latitude of the park and ride |
 | `updated_at` | datetime | The last time the data was updated |
+
+### BlueBikes
+
+| Variable | Type | Description |
+| :------- | :--- | :---------- |
+| `spot_id` | string | The id of the bluebike location |
+| `name` | string | Name of the bluebike location |
+| `spot_type` | integer | The type of the bluebike location |
+| `bikes_in_use` | integer | The amount of bikes in use |
+| `bikes_available` | integer | The amount of bikes available |
+| `last_update` | datetime | The last time the data was updated |
+| `longitude` | float | The longitude of the bluebike location |
+| `latitude` | float | The latitude of the bluebike location |
 </details>
 
 ## Example
@@ -203,6 +217,10 @@ SOFTWARE.
 
 [api]: https://data.stad.gent/explore
 [nipkaart]: https://www.nipkaart.nl
+
+[garages]: https://data.stad.gent/explore/dataset/bezetting-parkeergarages-real-time/information/
+[parkandride]: https://data.stad.gent/explore/dataset/real-time-bezetting-pr-gent/information/
+[bluebike]: https://data.stad.gent/explore/?disjunctive.keyword&disjunctive.theme&sort=modified&q=bluebike
 
 <!-- MARKDOWN LINKS & IMAGES -->
 [build-shield]: https://github.com/klaasnicolaas/python-odp-gent/actions/workflows/tests.yaml/badge.svg

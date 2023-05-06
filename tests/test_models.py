@@ -1,14 +1,12 @@
 """Test the models."""
-import pytest
 from aiohttp import ClientSession
 from aresponses import ResponsesMockServer
 
-from odp_gent import Garage, ODPGent, ParkAndRide
+from odp_gent import BlueBike, Garage, ODPGent, ParkAndRide
 
 from . import load_fixtures
 
 
-@pytest.mark.asyncio
 async def test_all_garages(aresponses: ResponsesMockServer) -> None:
     """Test all garages function."""
     aresponses.add(
@@ -76,5 +74,37 @@ async def test_filter_park_and_rides(aresponses: ResponsesMockServer) -> None:
             assert item.spot_id is not None
             assert item.url is not None
             assert item.availability_pct is not None
+            assert isinstance(item.longitude, float)
+            assert isinstance(item.latitude, float)
+
+
+async def test_bluebikes(aresponses: ResponsesMockServer) -> None:
+    """Test bluebikes function."""
+    datasets: list[str] = [
+        "bluebikes.json",
+        "bluebikes.json",
+        "bluebikes.json",
+        "bluebikes.json",
+    ]
+    for dataset in datasets:
+        aresponses.add(
+            "data.stad.gent",
+            "/api/records/1.0/search/",
+            "GET",
+            aresponses.Response(
+                status=200,
+                headers={"Content-Type": "application/json"},
+                text=load_fixtures(dataset),
+            ),
+        )
+    async with ClientSession() as session:
+        client = ODPGent(session=session)
+        bluebikes: list[BlueBike] = await client.bluebikes()
+        assert bluebikes is not None
+        for item in bluebikes:
+            assert item.spot_id == 72
+            assert item.name == "Station Gent-Dampoort"
+            assert item.bikes_in_use == 15
+            assert item.bikes_available == 45
             assert isinstance(item.longitude, float)
             assert isinstance(item.latitude, float)
