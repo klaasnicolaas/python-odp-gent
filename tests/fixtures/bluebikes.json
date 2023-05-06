@@ -1,0 +1,38 @@
+{
+    "nhits": 1,
+    "parameters": {
+        "dataset": "blue-bike-deelfietsen-gent-dampoort",
+        "rows": 10,
+        "start": 0,
+        "format": "json",
+        "timezone": "UTC"
+    },
+    "records": [
+        {
+            "datasetid": "blue-bike-deelfietsen-gent-dampoort",
+            "recordid": "e203ac31a7941dd78ea843e78e7f43737a01474d",
+            "fields": {
+                "last_seen": "2023-05-06T20:34:59+00:00",
+                "longitude": "3.740194000000",
+                "name": "Station Gent-Dampoort",
+                "geopoint": [
+                    51.056083,
+                    3.740194
+                ],
+                "latitude": "51.056083000000",
+                "bikes_available": 45,
+                "bikes_in_use": 15,
+                "type": "1",
+                "id": 72
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.740194,
+                    51.056083
+                ]
+            },
+            "record_timestamp": "2023-05-06T18:40:05.35Z"
+        }
+    ]
+}

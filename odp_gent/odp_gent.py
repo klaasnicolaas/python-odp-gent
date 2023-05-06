@@ -13,7 +13,7 @@ from aiohttp.hdrs import METH_GET
 from yarl import URL
 
 from .exceptions import ODPGentConnectionError, ODPGentError
-from .models import Garage, ParkAndRide
+from .models import BlueBike, Garage, ParkAndRide
 
 
 @dataclass
@@ -79,14 +79,10 @@ class ODPGent:
                 response.raise_for_status()
         except asyncio.TimeoutError as exception:
             msg = "Timeout occurred while connecting to the Open Data Platform API."
-            raise ODPGentConnectionError(
-                msg,
-            ) from exception
+            raise ODPGentConnectionError(msg) from exception
         except (ClientError, socket.gaierror) as exception:
             msg = "Error occurred while communicating with Open Data Platform API."
-            raise ODPGentConnectionError(
-                msg,
-            ) from exception
+            raise ODPGentConnectionError(msg) from exception
 
         content_type = response.headers.get("Content-Type", "")
         if "application/json" not in content_type:
@@ -152,6 +148,33 @@ class ODPGent:
 
         for item in locations["records"]:
             results.append(ParkAndRide.from_dict(item))
+        return results
+
+    async def bluebikes(self) -> list[BlueBike]:
+        """Get list of data from BlueBike locations.
+
+        Returns
+        -------
+            A list of BlueBike objects.
+        """
+        results: list[BlueBike] = []
+
+        # Data is spread over multiple datasets
+        datasets: list[str] = [
+            "blue-bike-deelfietsen-gent-sint-pieters-st-denijslaan",
+            "blue-bike-deelfietsen-merelbeke-drongen-wondelgem",
+            "blue-bike-deelfietsen-gent-sint-pieters-m-hendrikaplein",
+            "blue-bike-deelfietsen-gent-dampoort",
+        ]
+
+        for dataset in datasets:
+            locations = await self._request(
+                "search/",
+                params={"dataset": dataset},
+            )
+
+            for item in locations["records"]:
+                results.append(BlueBike.from_dict(item))
         return results
 
     async def close(self) -> None:
