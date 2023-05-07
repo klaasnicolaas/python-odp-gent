@@ -39,72 +39,10 @@ You can read the following datasets with this package:
 
 - [Parking garages occupancy][garages] (12 locations)
 - [Park and Ride occupancy][parkandride] (5 locations)
-- [BlueBike locations][bluebike] (6 locations)
+- [BlueBike rental locations][bluebike] (6 locations)
+- [Partago vehicle locations][partago] (116 locations)
 
-<details>
-    <summary>Click here to get more details</summary>
-
-### Parking garages
-
-Parameters:
-
-- **limit** (default: 10) - How many results you want to retrieve.
-
-| Variable | Type | Description |
-| :------- | :--- | :---------- |
-| `garage_id` | string | The id of the garage |
-| `name` | string | The name of the garage |
-| `parking_type` | string | The type of parking |
-| `url` | string | The url with more information about the garage |
-| `is_open` | boolean | Whether the garage is open or not |
-| `free_parking` | boolean | Whether there is free parking or not |
-| `temporary_closed` | boolean | Whether the garage is temporarily closed or not |
-| `free_space` | integer | The amount of free parking spaces |
-| `total_capacity` | integer | The total capacity of the garage |
-| `availability_pct` | float | The percentage of free parking spaces |
-| `occupancy_pct` | integer | The percentage of occupied parking spaces |
-| `longitude` | float | The longitude of the garage |
-| `latitude` | float | The latitude of the garage |
-| `updated_at` | datetime | The last time the data was updated |
-
-### Park and Ride
-
-Parameters:
-
-- **limit** (default: 10) - How many results you want to retrieve.
-- **gentse_feesten** - Whether a park and ride location is used for the [Gentse Feesten](https://gentsefeesten.stad.gent).
-
-| Variable | Type | Description |
-| :------- | :--- | :---------- |
-| `spot_id` | string | The id of the park and ride |
-| `name` | string | The name of the park and ride |
-| `parking_type` | string | The type of parking |
-| `url` | string | The url with more information about the park and ride |
-| `is_open` | boolean | Whether the park and ride is open or not |
-| `free_parking` | boolean | Whether there is free parking or not |
-| `temporary_closed` | boolean | Whether the park and ride is temporarily closed or not |
-| `gentse_feesten` | boolean | Whether the park and ride is used for the [Gentse Feesten](https://gentsefeesten.stad.gent) |
-| `free_space` | integer | The amount of free parking spaces |
-| `total_capacity` | integer | The total capacity of the park and ride |
-| `availability_pct` | float | The percentage of free parking spaces |
-| `occupancy_pct` | integer | The percentage of occupied parking spaces |
-| `longitude` | float | The longitude of the park and ride |
-| `latitude` | float | The latitude of the park and ride |
-| `updated_at` | datetime | The last time the data was updated |
-
-### BlueBikes
-
-| Variable | Type | Description |
-| :------- | :--- | :---------- |
-| `spot_id` | string | The id of the bluebike location |
-| `name` | string | Name of the bluebike location |
-| `spot_type` | integer | The type of the bluebike location |
-| `bikes_in_use` | integer | The amount of bikes in use |
-| `bikes_available` | integer | The amount of bikes available |
-| `last_update` | datetime | The last time the data was updated |
-| `longitude` | float | The longitude of the bluebike location |
-| `latitude` | float | The latitude of the bluebike location |
-</details>
+Find here [more information](examples) about the different variables and parameters per dataset with this python package.
 
 ## Example
 
@@ -218,9 +156,10 @@ SOFTWARE.
 [api]: https://data.stad.gent/explore
 [nipkaart]: https://www.nipkaart.nl
 
-[garages]: https://data.stad.gent/explore/dataset/bezetting-parkeergarages-real-time/information/
-[parkandride]: https://data.stad.gent/explore/dataset/real-time-bezetting-pr-gent/information/
+[garages]: https://data.stad.gent/explore/dataset/bezetting-parkeergarages-real-time/information
+[parkandride]: https://data.stad.gent/explore/dataset/real-time-bezetting-pr-gent/information
 [bluebike]: https://data.stad.gent/explore/?disjunctive.keyword&disjunctive.theme&sort=modified&q=bluebike
+[partago]: https://data.stad.gent/explore/dataset/real-time-locaties-deelwagen-partago/information
 
 <!-- MARKDOWN LINKS & IMAGES -->
 [build-shield]: https://github.com/klaasnicolaas/python-odp-gent/actions/workflows/tests.yaml/badge.svg

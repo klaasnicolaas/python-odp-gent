@@ -7,16 +7,16 @@ from odp_gent import ODPGent
 
 
 async def main() -> None:
-    """Fetch bluebike data using the Gent API client."""
+    """Fetch Partago data using the Gent API client."""
     async with ODPGent() as client:
-        bluebiks = await client.bluebikes()
+        partago_vehicles = await client.partago_vehicles(limit=120)
 
         count: int
-        for index, item in enumerate(bluebiks, 1):
+        for index, item in enumerate(partago_vehicles, 1):
             count = index
             print(item)
-        print("__________________________")
-        print(f"{count} bluebike locations found")
+        print("________________________")
+        print(f"{count} partago cars found")
 
 
 if __name__ == "__main__":

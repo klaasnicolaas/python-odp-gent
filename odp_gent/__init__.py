@@ -1,7 +1,7 @@
 """Asynchronous Python client providing Open Data information of Gent."""
 
 from .exceptions import ODPGentConnectionError, ODPGentError
-from .models import BlueBike, Garage, ParkAndRide
+from .models import BlueBike, Garage, ParkAndRide, Partago
 from .odp_gent import ODPGent
 
 __all__ = [
@@ -11,4 +11,5 @@ __all__ = [
     "Garage",
     "ParkAndRide",
     "BlueBike",
+    "Partago",
 ]
