@@ -64,6 +64,7 @@ async def main() -> None:
 if __name__ == "__main__":
     asyncio.run(main())
 ```
+You can find more code examples in the [examples](examples) folder.
 
 ## Use cases
 
