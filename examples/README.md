@@ -52,7 +52,7 @@ Parameters:
 
 ## BlueBikes
 
-This dataset consists of information about the rental locations of the bluebikes
+This dataset consists of information about the rental locations of the [bluebikes](https://www.blue-bike.be).
 
 | Variable | Type | Description |
 | :------- | :--- | :---------- |
@@ -67,7 +67,7 @@ This dataset consists of information about the rental locations of the bluebikes
 
 ## Partago
 
-This dataset consists of information about the Partago vehicles and where they are located.
+This dataset consists of information about the [Partago](https://www.partago.be) vehicles and where they are located.
 
 Parameters:
 
