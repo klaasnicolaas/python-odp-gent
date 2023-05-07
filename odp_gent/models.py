@@ -1,9 +1,12 @@
 """Models for Open Data Platform of Gent."""
 from __future__ import annotations
 
+import json
 from dataclasses import dataclass
 from datetime import datetime
 from typing import Any
+
+import pytz
 
 
 @dataclass
@@ -177,7 +180,81 @@ class BlueBike:
             spot_type=int(attr.get("type")),
             bikes_in_use=attr.get("bikes_in_use"),
             bikes_available=attr.get("bikes_available"),
-            last_update=datetime.strptime(attr.get("last_seen"), "%Y-%m-%dT%H:%M:%S%z"),
+            last_update=datetime.strptime(
+                attr.get("last_seen"),
+                "%Y-%m-%dT%H:%M:%S%z",
+            ).replace(tzinfo=pytz.timezone("Europe/Brussels")),
             longitude=float(attr.get("longitude")),
             latitude=float(attr.get("latitude")),
+        )
+
+
+@dataclass
+class Partago:
+    """Object representing a Partago vehicle location."""
+
+    name: str
+    vehicle_type: Vehicle
+    picture_url: str | None
+    station_type: str
+    last_update: datetime
+
+    latitude: float
+    longitude: float
+
+    @classmethod
+    def from_dict(cls: type[Partago], data: dict[str, Any]) -> Partago:
+        """Return a Partago vehicle object from a dictionary.
+
+        Args:
+        ----
+            data: The data from the API.
+
+        Returns:
+        -------
+            A Partago object.
+        """
+        attr = data["fields"]
+        geo = data["geometry"]["coordinates"]
+        return cls(
+            name=attr.get("displayname"),
+            vehicle_type=Vehicle.from_dict(json.loads(attr.get("vehicleinformation"))),
+            picture_url=None if attr.get("picture") == "null" else attr.get("picture"),
+            station_type=attr.get("stationtype"),
+            last_update=datetime.strptime(
+                data["record_timestamp"],
+                "%Y-%m-%dT%H:%M:%S.%fZ",
+            ).replace(tzinfo=pytz.utc),
+            longitude=geo[0],
+            latitude=geo[1],
+        )
+
+
+@dataclass
+class Vehicle:
+    """Object representing a general vehicle."""
+
+    brand: str
+    mode: str
+    fuel_type: str
+    transmission_type: str
+
+    @classmethod
+    def from_dict(cls: type[Vehicle], data: dict[str, Any]) -> Vehicle:
+        """Return a Vehicle object from a dictionary.
+
+        Args:
+        ----
+            data: The data from the API.
+
+
+        Returns:
+        -------
+            A Vehicle object.
+        """
+        return cls(
+            brand=data["brand"],
+            mode=data["model"],
+            fuel_type=data["fuelType"],
+            transmission_type=data["transmissionType"],
         )

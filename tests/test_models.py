@@ -2,7 +2,7 @@
 from aiohttp import ClientSession
 from aresponses import ResponsesMockServer
 
-from odp_gent import BlueBike, Garage, ODPGent, ParkAndRide
+from odp_gent import BlueBike, Garage, ODPGent, ParkAndRide, Partago
 
 from . import load_fixtures
 
@@ -106,5 +106,29 @@ async def test_bluebikes(aresponses: ResponsesMockServer) -> None:
             assert item.name == "Station Gent-Dampoort"
             assert item.bikes_in_use == 15
             assert item.bikes_available == 45
+            assert isinstance(item.longitude, float)
+            assert isinstance(item.latitude, float)
+
+
+async def test_partago(aresponses: ResponsesMockServer) -> None:
+    """Test partago function."""
+    aresponses.add(
+        "data.stad.gent",
+        "/api/records/1.0/search/",
+        "GET",
+        aresponses.Response(
+            status=200,
+            headers={"Content-Type": "application/json"},
+            text=load_fixtures("partago.json"),
+        ),
+    )
+    async with ClientSession() as session:
+        client = ODPGent(session=session)
+        partago_vehicles: list[Partago] = await client.partago_vehicles()
+        assert partago_vehicles is not None
+        for item in partago_vehicles:
+            assert item.name is not None
+            assert item.picture_url is not None
+            assert item.station_type == "free floating"
             assert isinstance(item.longitude, float)
             assert isinstance(item.latitude, float)

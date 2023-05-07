@@ -1,0 +1,138 @@
+{
+    "nhits": 116,
+    "parameters": {
+        "dataset": "real-time-locaties-deelwagen-partago",
+        "rows": 5,
+        "start": 0,
+        "format": "json",
+        "timezone": "UTC"
+    },
+    "records": [
+        {
+            "datasetid": "real-time-locaties-deelwagen-partago",
+            "recordid": "dec7cecb3b8db4a588fadfdc21162f211c4011eb",
+            "fields": {
+                "picture": "https://firebasestorage.googleapis.com/v0/b/sizzling-torch-8026.appspot.com/o/images%2Fplaces%2Fquark.png?alt=media&token=281f4992-fb33-49e3-adbf-1cd51f5a45d5",
+                "vehicleinformation": "{\"brand\": \"Nissan\", \"model\": \"e-NV200 2018\", \"fuelType\": \"electric\", \"transmissionType\": \"automatic\"}",
+                "longitude": "3.717662708201117",
+                "geopoints": [
+                    51.047994818648135,
+                    3.717662708201117
+                ],
+                "geosplitst": "51.047994818648135",
+                "geoposition": "{\"latitude\": 51.047994818648135, \"longitude\": 3.717662708201117}",
+                "stationtype": "free floating",
+                "displayname": "Partago Quark",
+                "stationinformation": "Coupure rechts 6, Gent"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.717662708201117,
+                    51.047994818648135
+                ]
+            },
+            "record_timestamp": "2023-05-07T12:00:08.601Z"
+        },
+        {
+            "datasetid": "real-time-locaties-deelwagen-partago",
+            "recordid": "d82909391781207f93af5571fd21fcc61dc3d0af",
+            "fields": {
+                "picture": "https://firebasestorage.googleapis.com/v0/b/sizzling-torch-8026.appspot.com/o/images%2Fplaces%2Fzoe_66percent.jpg?alt=media&token=948566aa-abf0-4909-8e4d-62177d686877",
+                "vehicleinformation": "{\"brand\": \"Renault\", \"model\": \"ZOE 50\", \"fuelType\": \"electric\", \"transmissionType\": \"automatic\"}",
+                "longitude": "3.7530556155420487",
+                "geopoints": [
+                    51.044021518441454,
+                    3.7530556155420487
+                ],
+                "geosplitst": "51.044021518441454",
+                "geoposition": "{\"latitude\": 51.044021518441454, \"longitude\": 3.7530556155420487}",
+                "stationtype": "free floating",
+                "displayname": "Partago Theo"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.7530556155420487,
+                    51.044021518441454
+                ]
+            },
+            "record_timestamp": "2023-05-07T12:00:08.601Z"
+        },
+        {
+            "datasetid": "real-time-locaties-deelwagen-partago",
+            "recordid": "29eb965b02f7cb762598f771b4b4b69f6deb85cc",
+            "fields": {
+                "picture": "https://firebasestorage.googleapis.com/v0/b/sizzling-torch-8026.appspot.com/o/images%2Fplaces%2Fzoe_66percent.jpg?alt=media&token=948566aa-abf0-4909-8e4d-62177d686877",
+                "vehicleinformation": "{\"brand\": \"Renault\", \"model\": \"Zoé\", \"fuelType\": \"electric\", \"transmissionType\": \"automatic\"}",
+                "longitude": "3.7441249969609345",
+                "geopoints": [
+                    51.03416087693723,
+                    3.7441249969609345
+                ],
+                "geosplitst": "51.03416087693723",
+                "geoposition": "{\"latitude\": 51.03416087693723, \"longitude\": 3.7441249969609345}",
+                "stationtype": "free floating",
+                "displayname": "Partago Rox"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.7441249969609345,
+                    51.03416087693723
+                ]
+            },
+            "record_timestamp": "2023-05-07T12:00:08.601Z"
+        },
+        {
+            "datasetid": "real-time-locaties-deelwagen-partago",
+            "recordid": "21d361eac2d2e1b4c8ddd9a8f897a765eacbdda2",
+            "fields": {
+                "picture": "https://firebasestorage.googleapis.com/v0/b/sizzling-torch-8026.appspot.com/o/images%2Fplaces%2Fzoe_66percent.jpg?alt=media&token=948566aa-abf0-4909-8e4d-62177d686877",
+                "vehicleinformation": "{\"brand\": \"Renault\", \"model\": \"Zoé\", \"fuelType\": \"electric\", \"transmissionType\": \"automatic\"}",
+                "longitude": "3.7313283733281333",
+                "geopoints": [
+                    51.0628833078908,
+                    3.7313283733281333
+                ],
+                "geosplitst": "51.0628833078908",
+                "geoposition": "{\"latitude\": 51.0628833078908, \"longitude\": 3.7313283733281333}",
+                "stationtype": "free floating",
+                "displayname": "Partago Maxwell"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.7313283733281333,
+                    51.0628833078908
+                ]
+            },
+            "record_timestamp": "2023-05-07T12:00:08.601Z"
+        },
+        {
+            "datasetid": "real-time-locaties-deelwagen-partago",
+            "recordid": "d4d5d1514f52753faf0143e00c8f2144ab124edd",
+            "fields": {
+                "picture": "https://firebasestorage.googleapis.com/v0/b/sizzling-torch-8026.appspot.com/o/images%2Fplaces%2Fzoe_66percent.jpg?alt=media&token=948566aa-abf0-4909-8e4d-62177d686877",
+                "vehicleinformation": "{\"brand\": \"Renault\", \"model\": \"Zoé\", \"fuelType\": \"electric\", \"transmissionType\": \"automatic\"}",
+                "longitude": "3.760778443329769",
+                "geopoints": [
+                    51.0443421974434,
+                    3.760778443329769
+                ],
+                "geosplitst": "51.0443421974434",
+                "geoposition": "{\"latitude\": 51.0443421974434, \"longitude\": 3.760778443329769}",
+                "stationtype": "free floating",
+                "displayname": "Partago Wez"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.760778443329769,
+                    51.0443421974434
+                ]
+            },
+            "record_timestamp": "2023-05-07T12:00:08.601Z"
+        }
+    ]
+}

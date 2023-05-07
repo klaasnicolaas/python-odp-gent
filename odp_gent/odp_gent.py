@@ -13,7 +13,7 @@ from aiohttp.hdrs import METH_GET
 from yarl import URL
 
 from .exceptions import ODPGentConnectionError, ODPGentError
-from .models import BlueBike, Garage, ParkAndRide
+from .models import BlueBike, Garage, ParkAndRide, Partago
 
 
 @dataclass
@@ -175,6 +175,23 @@ class ODPGent:
 
             for item in locations["records"]:
                 results.append(BlueBike.from_dict(item))
+        return results
+
+    async def partago_vehicles(self, limit: int = 10) -> list[Partago]:
+        """Get list of data from Partago vehicles.
+
+        Returns
+        -------
+            A list of Partago objects.
+        """
+        results: list[Partago] = []
+        vehicles = await self._request(
+            "search/",
+            params={"dataset": "real-time-locaties-deelwagen-partago", "rows": limit},
+        )
+
+        for item in vehicles["records"]:
+            results.append(Partago.from_dict(item))
         return results
 
     async def close(self) -> None:
