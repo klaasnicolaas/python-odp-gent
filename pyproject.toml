@@ -23,7 +23,7 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 packages = [
-    { include = "odp_gent" }
+    { include = "odp_gent", from = "src" },
 ]
 
 [tool.poetry.dependencies]
