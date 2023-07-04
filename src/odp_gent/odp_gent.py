@@ -106,15 +106,11 @@ class ODPGent:
         -------
             A list of Garage objects.
         """
-        results: list[Garage] = []
         locations = await self._request(
             "search/",
             params={"dataset": "bezetting-parkeergarages-real-time", "rows": limit},
         )
-
-        for item in locations["records"]:
-            results.append(Garage.from_dict(item))
-        return results
+        return [Garage.from_dict(item) for item in locations["records"]]
 
     async def park_and_rides(
         self,
@@ -132,12 +128,10 @@ class ODPGent:
         -------
             A list of ParkAndRide objects.
         """
-        results: list[ParkAndRide] = []
         params: dict[str, Any] = {
             "dataset": "real-time-bezetting-pr-gent",
             "rows": limit,
         }
-
         if gentse_feesten is not None:
             params["refine.gentse_feesten"] = gentse_feesten
 
@@ -145,10 +139,7 @@ class ODPGent:
             "search/",
             params=params,
         )
-
-        for item in locations["records"]:
-            results.append(ParkAndRide.from_dict(item))
-        return results
+        return [ParkAndRide.from_dict(item) for item in locations["records"]]
 
     async def bluebikes(self) -> list[BlueBike]:
         """Get list of data from BlueBike locations.
@@ -157,8 +148,6 @@ class ODPGent:
         -------
             A list of BlueBike objects.
         """
-        results: list[BlueBike] = []
-
         # Data is spread over multiple datasets
         datasets: list[str] = [
             "blue-bike-deelfietsen-gent-sint-pieters-st-denijslaan",
@@ -167,6 +156,7 @@ class ODPGent:
             "blue-bike-deelfietsen-gent-dampoort",
         ]
 
+        results: list[BlueBike] = []
         for dataset in datasets:
             locations = await self._request(
                 "search/",
@@ -174,7 +164,7 @@ class ODPGent:
             )
 
             for item in locations["records"]:
-                results.append(BlueBike.from_dict(item))
+                results.append(BlueBike.from_dict(item))  # noqa: PERF401
         return results
 
     async def partago_vehicles(self, limit: int = 10) -> list[Partago]:
@@ -184,15 +174,11 @@ class ODPGent:
         -------
             A list of Partago objects.
         """
-        results: list[Partago] = []
         vehicles = await self._request(
             "search/",
             params={"dataset": "real-time-locaties-deelwagen-partago", "rows": limit},
         )
-
-        for item in vehicles["records"]:
-            results.append(Partago.from_dict(item))
-        return results
+        return [Partago.from_dict(item) for item in vehicles["records"]]
 
     async def close(self) -> None:
         """Close open client session."""
