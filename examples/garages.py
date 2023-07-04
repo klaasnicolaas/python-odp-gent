@@ -12,10 +12,10 @@ async def main() -> None:
         garages = await client.garages(limit=12)
         print(garages)
 
-        count: int
-        for index, item in enumerate(garages, 1):
-            count = index
+        count: int = len(garages)
+        for item in garages:
             print(item)
+
         print("______________________")
         print(f"{count} garages found")
 

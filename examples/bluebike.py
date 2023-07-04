@@ -11,10 +11,10 @@ async def main() -> None:
     async with ODPGent() as client:
         bluebiks = await client.bluebikes()
 
-        count: int
-        for index, item in enumerate(bluebiks, 1):
-            count = index
+        count: int = len(bluebiks)
+        for item in bluebiks:
             print(item)
+
         print("__________________________")
         print(f"{count} bluebike locations found")
 

@@ -12,10 +12,10 @@ async def main() -> None:
         park_and_rides = await client.park_and_rides(limit=5, gentse_feesten="True")
         print(park_and_rides)
 
-        count: int
-        for index, item in enumerate(park_and_rides, 1):
-            count = index
+        count: int = len(park_and_rides)
+        for item in park_and_rides:
             print(item)
+
         print("________________________")
         print(f"{count} locations found")
 

@@ -11,10 +11,10 @@ async def main() -> None:
     async with ODPGent() as client:
         partago_vehicles = await client.partago_vehicles(limit=120)
 
-        count: int
-        for index, item in enumerate(partago_vehicles, 1):
-            count = index
+        count: int = len(partago_vehicles)
+        for item in partago_vehicles:
             print(item)
+
         print("________________________")
         print(f"{count} partago cars found")
 
