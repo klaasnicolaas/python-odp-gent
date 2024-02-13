@@ -49,6 +49,7 @@ class ODPGent:
             ODPGentConnectionError: Timeout occurred while
                 connecting to the Open Data Platform API.
             ODPGentError: If the data is not valid.
+
         """
         version = metadata.version(__package__)
         url = URL.build(
@@ -104,6 +105,7 @@ class ODPGent:
         Returns:
         -------
             A list of Garage objects.
+
         """
         locations = await self._request(
             "search/",
@@ -126,6 +128,7 @@ class ODPGent:
         Returns:
         -------
             A list of ParkAndRide objects.
+
         """
         params: dict[str, Any] = {
             "dataset": "real-time-bezetting-pr-gent",
@@ -146,6 +149,7 @@ class ODPGent:
         Returns
         -------
             A list of BlueBike objects.
+
         """
         # Data is spread over multiple datasets
         datasets: list[str] = [
@@ -172,6 +176,7 @@ class ODPGent:
         Returns
         -------
             A list of Partago objects.
+
         """
         vehicles = await self._request(
             "search/",
@@ -190,6 +195,7 @@ class ODPGent:
         Returns
         -------
             The Open Data Platform Gent object.
+
         """
         return self
 
@@ -199,5 +205,6 @@ class ODPGent:
         Args:
         ----
             _exc_info: Exec type.
+
         """
         await self.close()

@@ -42,6 +42,7 @@ class Garage:
         Returns:
         -------
             A Garage object.
+
         """
         attr = data["fields"]
         geo = data["geometry"]["coordinates"]
@@ -104,6 +105,7 @@ class ParkAndRide:
         Returns:
         -------
             A ParkAndRide object.
+
         """
 
         def convert_bool(value: str) -> bool:
@@ -116,6 +118,7 @@ class ParkAndRide:
             Returns:
             -------
                 A boolean.
+
             """
             if value == "True":
                 return True
@@ -172,6 +175,7 @@ class BlueBike:
         Returns:
         -------
             A BlueBike object.
+
         """
         attr = data["fields"]
         return cls(
@@ -213,6 +217,7 @@ class Partago:
         Returns:
         -------
             A Partago object.
+
         """
         attr = data["fields"]
         geo = data["geometry"]["coordinates"]
@@ -251,6 +256,7 @@ class Vehicle:
         Returns:
         -------
             A Vehicle object.
+
         """
         return cls(
             brand=data["brand"],
