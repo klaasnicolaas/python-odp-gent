@@ -1,4 +1,5 @@
 """Asynchronous Python client providing Open Data information of Gent."""
+
 from pathlib import Path
 
 

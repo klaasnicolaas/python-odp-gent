@@ -1,4 +1,5 @@
 """Models for Open Data Platform of Gent."""
+
 from __future__ import annotations
 
 import json
