@@ -1,0 +1,36 @@
+# serializer version: 1
+# name: test_all_garages
+  list([
+    Garage(garage_id='72dc32bd8fe81dae0b9602a038aaeea392d64c30', name='Sint-Michiels', parking_type='carPark', url='https://stad.gent/nl/mobiliteit-openbare-werken/parkeren/parkings-gent/parking-sint-michiels', is_open=True, free_parking=False, temporary_closed=False, free_space=181, total_capacity=315, availability_pct=57.5, occupation_pct=42, longitude=3.719727740000235, latitude=51.05311004768356, updated_at=datetime.datetime(2022, 7, 15, 13, 36, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200)))),
+    Garage(garage_id='713cf9789dc799f115348ac45bbae7a4df89a13b', name='Reep', parking_type='carPark', url='https://stad.gent/nl/mobiliteit-openbare-werken/parkeren/parkings-gent/parking-reep', is_open=True, free_parking=False, temporary_closed=False, free_space=174, total_capacity=439, availability_pct=39.6, occupation_pct=60, longitude=3.7298928896398924, latitude=51.05215838523151, updated_at=datetime.datetime(2022, 7, 15, 13, 36, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200)))),
+  ])
+# ---
+# name: test_bluebikes
+  list([
+    BlueBike(spot_id=72, name='Station Gent-Dampoort', spot_type=1, bikes_in_use=15, bikes_available=45, last_update=datetime.datetime(2023, 5, 6, 20, 34, 59, tzinfo=<DstTzInfo 'Europe/Brussels' LMT+0:18:00 STD>), longitude=3.740194, latitude=51.056083),
+    BlueBike(spot_id=72, name='Station Gent-Dampoort', spot_type=1, bikes_in_use=15, bikes_available=45, last_update=datetime.datetime(2023, 5, 6, 20, 34, 59, tzinfo=<DstTzInfo 'Europe/Brussels' LMT+0:18:00 STD>), longitude=3.740194, latitude=51.056083),
+    BlueBike(spot_id=72, name='Station Gent-Dampoort', spot_type=1, bikes_in_use=15, bikes_available=45, last_update=datetime.datetime(2023, 5, 6, 20, 34, 59, tzinfo=<DstTzInfo 'Europe/Brussels' LMT+0:18:00 STD>), longitude=3.740194, latitude=51.056083),
+    BlueBike(spot_id=72, name='Station Gent-Dampoort', spot_type=1, bikes_in_use=15, bikes_available=45, last_update=datetime.datetime(2023, 5, 6, 20, 34, 59, tzinfo=<DstTzInfo 'Europe/Brussels' LMT+0:18:00 STD>), longitude=3.740194, latitude=51.056083),
+  ])
+# ---
+# name: test_filter_park_and_rides
+  list([
+    ParkAndRide(spot_id='3f38ec867beb355b795247f416c782cdb5695338', name='P+R Wondelgem', parking_type='offStreetParkingGround', url='https://stad.gent/nl/mobiliteit-openbare-werken/parkeren/park-and-ride-pr/pr-wondelgem-industrieweg', is_open=True, free_parking=True, temporary_closed=False, gentse_feesten=False, free_space=18, total_capacity=62, availability_pct=29.0, occupation_pct=70, longitude=3.71138627257, latitude=51.0985019636, updated_at=datetime.datetime(2022, 7, 15, 13, 30, 42, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200)))),
+    ParkAndRide(spot_id='ab99b16b828b42be404ad006b86ffd476ef2a708', name='P+R Bourgoyen', parking_type='offStreetParkingGround', url='https://stad.gent/nl/mobiliteit-openbare-werken/parkeren/park-and-ride-pr/pr-bourgoyen', is_open=True, free_parking=True, temporary_closed=False, gentse_feesten=True, free_space=211, total_capacity=250, availability_pct=84.4, occupation_pct=15, longitude=3.68175794804, latitude=51.0674048936, updated_at=datetime.datetime(2022, 7, 15, 14, 31, 1, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200)))),
+  ])
+# ---
+# name: test_park_and_rides
+  list([
+    ParkAndRide(spot_id='3f38ec867beb355b795247f416c782cdb5695338', name='P+R Wondelgem', parking_type='offStreetParkingGround', url='https://stad.gent/nl/mobiliteit-openbare-werken/parkeren/park-and-ride-pr/pr-wondelgem-industrieweg', is_open=True, free_parking=True, temporary_closed=False, gentse_feesten=False, free_space=18, total_capacity=62, availability_pct=29.0, occupation_pct=70, longitude=3.71138627257, latitude=51.0985019636, updated_at=datetime.datetime(2022, 7, 15, 13, 30, 42, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200)))),
+    ParkAndRide(spot_id='ab99b16b828b42be404ad006b86ffd476ef2a708', name='P+R Bourgoyen', parking_type='offStreetParkingGround', url='https://stad.gent/nl/mobiliteit-openbare-werken/parkeren/park-and-ride-pr/pr-bourgoyen', is_open=True, free_parking=True, temporary_closed=False, gentse_feesten=True, free_space=211, total_capacity=250, availability_pct=84.4, occupation_pct=15, longitude=3.68175794804, latitude=51.0674048936, updated_at=datetime.datetime(2022, 7, 15, 14, 31, 1, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200)))),
+  ])
+# ---
+# name: test_partago
+  list([
+    Partago(name='Partago Quark', vehicle_type=Vehicle(brand='Nissan', mode='e-NV200 2018', fuel_type='electric', transmission_type='automatic'), picture_url='https://firebasestorage.googleapis.com/v0/b/sizzling-torch-8026.appspot.com/o/images%2Fplaces%2Fquark.png?alt=media&token=281f4992-fb33-49e3-adbf-1cd51f5a45d5', station_type='free floating', last_update=datetime.datetime(2023, 5, 7, 12, 0, 8, 601000, tzinfo=<UTC>), latitude=51.047994818648135, longitude=3.717662708201117),
+    Partago(name='Partago Theo', vehicle_type=Vehicle(brand='Renault', mode='ZOE 50', fuel_type='electric', transmission_type='automatic'), picture_url='https://firebasestorage.googleapis.com/v0/b/sizzling-torch-8026.appspot.com/o/images%2Fplaces%2Fzoe_66percent.jpg?alt=media&token=948566aa-abf0-4909-8e4d-62177d686877', station_type='free floating', last_update=datetime.datetime(2023, 5, 7, 12, 0, 8, 601000, tzinfo=<UTC>), latitude=51.044021518441454, longitude=3.7530556155420487),
+    Partago(name='Partago Rox', vehicle_type=Vehicle(brand='Renault', mode='Zoé', fuel_type='electric', transmission_type='automatic'), picture_url='https://firebasestorage.googleapis.com/v0/b/sizzling-torch-8026.appspot.com/o/images%2Fplaces%2Fzoe_66percent.jpg?alt=media&token=948566aa-abf0-4909-8e4d-62177d686877', station_type='free floating', last_update=datetime.datetime(2023, 5, 7, 12, 0, 8, 601000, tzinfo=<UTC>), latitude=51.03416087693723, longitude=3.7441249969609345),
+    Partago(name='Partago Maxwell', vehicle_type=Vehicle(brand='Renault', mode='Zoé', fuel_type='electric', transmission_type='automatic'), picture_url='https://firebasestorage.googleapis.com/v0/b/sizzling-torch-8026.appspot.com/o/images%2Fplaces%2Fzoe_66percent.jpg?alt=media&token=948566aa-abf0-4909-8e4d-62177d686877', station_type='free floating', last_update=datetime.datetime(2023, 5, 7, 12, 0, 8, 601000, tzinfo=<UTC>), latitude=51.0628833078908, longitude=3.7313283733281333),
+    Partago(name='Partago Wez', vehicle_type=Vehicle(brand='Renault', mode='Zoé', fuel_type='electric', transmission_type='automatic'), picture_url='https://firebasestorage.googleapis.com/v0/b/sizzling-torch-8026.appspot.com/o/images%2Fplaces%2Fzoe_66percent.jpg?alt=media&token=948566aa-abf0-4909-8e4d-62177d686877', station_type='free floating', last_update=datetime.datetime(2023, 5, 7, 12, 0, 8, 601000, tzinfo=<UTC>), latitude=51.0443421974434, longitude=3.760778443329769),
+  ])
+# ---

@@ -2,15 +2,22 @@
 
 from __future__ import annotations
 
-from aiohttp import ClientSession
-from aresponses import ResponsesMockServer
+from typing import TYPE_CHECKING
 
-from odp_gent import BlueBike, Garage, ODPGent, ParkAndRide, Partago
+from aresponses import ResponsesMockServer
+from syrupy.assertion import SnapshotAssertion
 
 from . import load_fixtures
 
+if TYPE_CHECKING:
+    from odp_gent import BlueBike, Garage, ODPGent, ParkAndRide, Partago
 
-async def test_all_garages(aresponses: ResponsesMockServer) -> None:
+
+async def test_all_garages(
+    aresponses: ResponsesMockServer,
+    snapshot: SnapshotAssertion,
+    odp_gent_client: ODPGent,
+) -> None:
     """Test all garages function."""
     aresponses.add(
         "data.stad.gent",
@@ -22,18 +29,15 @@ async def test_all_garages(aresponses: ResponsesMockServer) -> None:
             text=load_fixtures("garages.json"),
         ),
     )
-    async with ClientSession() as session:
-        client = ODPGent(session=session)
-        spaces: list[Garage] = await client.garages()
-        assert spaces is not None
-        for item in spaces:
-            assert isinstance(item, Garage)
-            assert item.garage_id is not None
-            assert item.longitude is not None
-            assert item.latitude is not None
+    spaces: list[Garage] = await odp_gent_client.garages()
+    assert spaces == snapshot
 
 
-async def test_park_and_rides(aresponses: ResponsesMockServer) -> None:
+async def test_park_and_rides(
+    aresponses: ResponsesMockServer,
+    snapshot: SnapshotAssertion,
+    odp_gent_client: ODPGent,
+) -> None:
     """Test park and ride spaces function."""
     aresponses.add(
         "data.stad.gent",
@@ -45,19 +49,15 @@ async def test_park_and_rides(aresponses: ResponsesMockServer) -> None:
             text=load_fixtures("park_and_ride.json"),
         ),
     )
-    async with ClientSession() as session:
-        client = ODPGent(session=session)
-        spaces: list[ParkAndRide] = await client.park_and_rides()
-        assert spaces is not None
-        for item in spaces:
-            assert item.spot_id is not None
-            assert item.url is not None
-            assert item.availability_pct is not None
-            assert isinstance(item.longitude, float)
-            assert isinstance(item.latitude, float)
+    spaces: list[ParkAndRide] = await odp_gent_client.park_and_rides()
+    assert spaces == snapshot
 
 
-async def test_filter_park_and_rides(aresponses: ResponsesMockServer) -> None:
+async def test_filter_park_and_rides(
+    aresponses: ResponsesMockServer,
+    snapshot: SnapshotAssertion,
+    odp_gent_client: ODPGent,
+) -> None:
     """Test park and ride spaces filter function."""
     aresponses.add(
         "data.stad.gent",
@@ -69,19 +69,17 @@ async def test_filter_park_and_rides(aresponses: ResponsesMockServer) -> None:
             text=load_fixtures("park_and_ride.json"),
         ),
     )
-    async with ClientSession() as session:
-        client = ODPGent(session=session)
-        spaces: list[ParkAndRide] = await client.park_and_rides(gentse_feesten="True")
-        assert spaces is not None
-        for item in spaces:
-            assert item.spot_id is not None
-            assert item.url is not None
-            assert item.availability_pct is not None
-            assert isinstance(item.longitude, float)
-            assert isinstance(item.latitude, float)
+    spaces: list[ParkAndRide] = await odp_gent_client.park_and_rides(
+        gentse_feesten="True"
+    )
+    assert spaces == snapshot
 
 
-async def test_bluebikes(aresponses: ResponsesMockServer) -> None:
+async def test_bluebikes(
+    aresponses: ResponsesMockServer,
+    snapshot: SnapshotAssertion,
+    odp_gent_client: ODPGent,
+) -> None:
     """Test bluebikes function."""
     datasets: list[str] = [
         "bluebikes.json",
@@ -100,20 +98,15 @@ async def test_bluebikes(aresponses: ResponsesMockServer) -> None:
                 text=load_fixtures(dataset),
             ),
         )
-    async with ClientSession() as session:
-        client = ODPGent(session=session)
-        bluebikes: list[BlueBike] = await client.bluebikes()
-        assert bluebikes is not None
-        for item in bluebikes:
-            assert item.spot_id == 72
-            assert item.name == "Station Gent-Dampoort"
-            assert item.bikes_in_use == 15
-            assert item.bikes_available == 45
-            assert isinstance(item.longitude, float)
-            assert isinstance(item.latitude, float)
+    bluebikes: list[BlueBike] = await odp_gent_client.bluebikes()
+    assert bluebikes == snapshot
 
 
-async def test_partago(aresponses: ResponsesMockServer) -> None:
+async def test_partago(
+    aresponses: ResponsesMockServer,
+    snapshot: SnapshotAssertion,
+    odp_gent_client: ODPGent,
+) -> None:
     """Test partago function."""
     aresponses.add(
         "data.stad.gent",
@@ -125,13 +118,5 @@ async def test_partago(aresponses: ResponsesMockServer) -> None:
             text=load_fixtures("partago.json"),
         ),
     )
-    async with ClientSession() as session:
-        client = ODPGent(session=session)
-        partago_vehicles: list[Partago] = await client.partago_vehicles()
-        assert partago_vehicles is not None
-        for item in partago_vehicles:
-            assert item.name is not None
-            assert item.picture_url is not None
-            assert item.station_type == "free floating"
-            assert isinstance(item.longitude, float)
-            assert isinstance(item.latitude, float)
+    partago_vehicles: list[Partago] = await odp_gent_client.partago_vehicles()
+    assert partago_vehicles == snapshot
