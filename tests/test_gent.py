@@ -14,7 +14,10 @@ from odp_gent.exceptions import ODPGentConnectionError, ODPGentError
 from . import load_fixtures
 
 
-async def test_json_request(aresponses: ResponsesMockServer) -> None:
+async def test_json_request(
+    aresponses: ResponsesMockServer,
+    odp_gent_client: ODPGent,
+) -> None:
     """Test JSON response is handled correctly."""
     aresponses.add(
         "data.stad.gent",
@@ -26,11 +29,9 @@ async def test_json_request(aresponses: ResponsesMockServer) -> None:
             text=load_fixtures("garages.json"),
         ),
     )
-    async with ClientSession() as session:
-        client = ODPGent(session=session)
-        response = await client._request("test")
-        assert response is not None
-        await client.close()
+    response = await odp_gent_client._request("test")
+    assert response is not None
+    await odp_gent_client.close()
 
 
 async def test_internal_session(aresponses: ResponsesMockServer) -> None:
@@ -71,7 +72,10 @@ async def test_timeout(aresponses: ResponsesMockServer) -> None:
             assert await client._request("test")
 
 
-async def test_content_type(aresponses: ResponsesMockServer) -> None:
+async def test_content_type(
+    aresponses: ResponsesMockServer,
+    odp_gent_client: ODPGent,
+) -> None:
     """Test request content type error from Open Data Platform API of Gent."""
     aresponses.add(
         "data.stad.gent",
@@ -82,11 +86,8 @@ async def test_content_type(aresponses: ResponsesMockServer) -> None:
             headers={"Content-Type": "blabla/blabla"},
         ),
     )
-
-    async with ClientSession() as session:
-        client = ODPGent(session=session)
-        with pytest.raises(ODPGentError):
-            assert await client._request("test")
+    with pytest.raises(ODPGentError):
+        assert await odp_gent_client._request("test")
 
 
 async def test_client_error() -> None:
