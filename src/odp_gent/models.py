@@ -108,23 +108,6 @@ class ParkAndRide:
             A ParkAndRide object.
 
         """
-
-        def convert_bool(value: str) -> bool:
-            """Convert a string to a boolean.
-
-            Args:
-            ----
-                value: The string to convert.
-
-            Returns:
-            -------
-                A boolean.
-
-            """
-            if value == "True":
-                return True
-            return False
-
         attr = data["fields"]
         geo = data["geometry"]["coordinates"]
         return cls(
@@ -135,7 +118,7 @@ class ParkAndRide:
             is_open=bool(attr.get("isopennow")),
             free_parking=bool(attr.get("freeparking")),
             temporary_closed=bool(attr.get("temporaryclosed")),
-            gentse_feesten=convert_bool(attr.get("gentse_feesten")),
+            gentse_feesten=bool(attr.get("gentse_feesten") == "True"),
             free_space=attr.get("availablespaces"),
             total_capacity=attr.get("numberofspaces"),
             availability_pct=round(
