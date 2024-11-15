@@ -15,6 +15,8 @@ from yarl import URL
 from .exceptions import ODPGentConnectionError, ODPGentError
 from .models import BlueBike, Garage, ParkAndRide, Partago
 
+VERSION = metadata.version(__package__)
+
 
 @dataclass
 class ODPGent:
@@ -52,7 +54,6 @@ class ODPGent:
             ODPGentError: If the data is not valid.
 
         """
-        version = metadata.version(__package__)
         url = URL.build(
             scheme="https",
             host="data.stad.gent",
@@ -61,7 +62,7 @@ class ODPGent:
 
         headers = {
             "Accept": "application/json",
-            "User-Agent": f"PythonODPGent/{version}",
+            "User-Agent": f"PythonODPGent/{VERSION}",
         }
 
         if self.session is None:
