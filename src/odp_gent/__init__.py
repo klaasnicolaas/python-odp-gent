@@ -5,11 +5,11 @@ from .models import BlueBike, Garage, ParkAndRide, Partago
 from .odp_gent import ODPGent
 
 __all__ = [
+    "BlueBike",
+    "Garage",
     "ODPGent",
     "ODPGentConnectionError",
     "ODPGentError",
-    "Garage",
     "ParkAndRide",
-    "BlueBike",
     "Partago",
 ]
