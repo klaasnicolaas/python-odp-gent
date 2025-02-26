@@ -143,7 +143,7 @@ poetry run pytest --snapshot-update
 
 MIT License
 
-Copyright (c) 2022-2024 Klaas Schoute
+Copyright (c) 2022-2025 Klaas Schoute
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -186,7 +186,7 @@ SOFTWARE.
 [downloads-url]: https://pypistats.org/packages/odp-gent
 [license-shield]: https://img.shields.io/github/license/klaasnicolaas/python-odp-gent.svg
 [last-commit-shield]: https://img.shields.io/github/last-commit/klaasnicolaas/python-odp-gent.svg
-[maintenance-shield]: https://img.shields.io/maintenance/yes/2024.svg
+[maintenance-shield]: https://img.shields.io/maintenance/yes/2025.svg
 [maintainability-shield]: https://api.codeclimate.com/v1/badges/ceb27fb15cf0e485dc23/maintainability
 [maintainability-url]: https://codeclimate.com/github/klaasnicolaas/python-odp-gent/maintainability
 [project-stage-shield]: https://img.shields.io/badge/project%20stage-production%20ready-brightgreen.svg
