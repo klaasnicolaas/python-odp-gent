@@ -1,14 +1,12 @@
-[tool.poetry]
+[project]
 name = "odp-gent"
 version = "0.0.0"
 description = "Asynchronous Python client providing Open Data information of Gent"
-authors = ["Klaas Schoute <hello@student-techlife.com>"]
-maintainers = ["Klaas Schoute <hello@student-techlife.com>"]
+authors = [{ name="Klaas Schoute", email="<hello@student-techlife.com>"}]
+maintainers = [{name="Klaas Schoute", email="<hello@student-techlife.com>"}]
 license = "MIT"
+requires-python = ">=3.11"
 readme = "README.md"
-homepage = "https://github.com/klaasnicolaas/python-odp-gent"
-repository = "https://github.com/klaasnicolaas/python-odp-gent"
-documentation = "https://github.com/klaasnicolaas/python-odp-gent"
 keywords = ["open", "data", "platform", "parking", "gent", "api", "async", "client"]
 classifiers = [
   "Development Status :: 5 - Production/Stable",
@@ -22,6 +20,7 @@ classifiers = [
   "Programming Language :: Python :: 3",
   "Topic :: Software Development :: Libraries :: Python Modules",
 ]
+dynamic = ["dependencies"]
 packages = [
   { include = "odp_gent", from = "src" },
 ]
@@ -32,9 +31,12 @@ python = "^3.11"
 yarl = ">=1.6.0"
 pytz = "^2023.3"
 
-[tool.poetry.urls]
+[project.urls]
 "Bug Tracker" = "https://github.com/klaasnicolaas/python-odp-gent/issues"
 Changelog = "https://github.com/klaasnicolaas/python-odp-gent/releases"
+homepage = "https://github.com/klaasnicolaas/python-odp-gent"
+repository = "https://github.com/klaasnicolaas/python-odp-gent"
+documentation = "https://github.com/klaasnicolaas/python-odp-gent"
 
 [tool.poetry.group.dev.dependencies]
 aresponses = "3.0.0"
@@ -125,7 +127,7 @@ asyncio_mode = "auto"
 target-version = "py311"
 lint.select = ["ALL"]
 lint.ignore = [
-  "ANN401",  # Opinioated warning on disallowing dynamically typed expressions
+  "ANN401",  # Opinionated warning on disallowing dynamically typed expressions
   "D203",    # Conflicts with other rules
   "D213",    # Conflicts with other rules
   "D417",    # False positives in some occasions
@@ -134,7 +136,6 @@ lint.ignore = [
 
   # Conflicts with the Ruff formatter
   "COM812",
-  "ISC001",
 ]
 
 [tool.ruff.lint.flake8-pytest-style]
