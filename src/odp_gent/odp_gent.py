@@ -6,7 +6,7 @@ import asyncio
 import socket
 from dataclasses import dataclass
 from importlib import metadata
-from typing import Any, Self, cast
+from typing import Any, Self
 
 from aiohttp import ClientError, ClientSession
 from aiohttp.hdrs import METH_GET
@@ -95,7 +95,7 @@ class ODPGent:
                 {"Content-Type": content_type, "Response": text},
             )
 
-        return cast(dict[str, Any], await response.json())
+        return await response.json()
 
     async def garages(self, limit: int = 10) -> list[Garage]:
         """Get list of parking garages.
