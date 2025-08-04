@@ -364,14 +364,14 @@ profile = ["gprof2dot (>=2022.7.29)"]
 
 [[package]]
 name = "distlib"
-version = "0.3.9"
+version = "0.4.0"
 description = "Distribution utilities"
 optional = false
 python-versions = "*"
 groups = ["dev"]
 files = [
-    {file = "distlib-0.3.9-py2.py3-none-any.whl", hash = "sha256:47f8c22fd27c27e25a65601af709b38e4f0a45ea4fc2e710f65755fa8caaaf87"},
-    {file = "distlib-0.3.9.tar.gz", hash = "sha256:a60f20dea646b8a33f3e7772f74dc0b2d0772d2837ee1342a00645c81edf9403"},
+    {file = "distlib-0.4.0-py2.py3-none-any.whl", hash = "sha256:9659f7d87e46584a30b5780e43ac7a2143098441670ff0a49d5f9034c54a6c16"},
+    {file = "distlib-0.4.0.tar.gz", hash = "sha256:feec40075be03a04501a973d81f633735b4b69f98b05450592310c0f401a4e0d"},
 ]
 
 [[package]]
@@ -1315,14 +1315,14 @@ markers = {main = "python_version < \"3.13\""}
 
 [[package]]
 name = "virtualenv"
-version = "20.31.2"
+version = "20.33.0"
 description = "Virtual Python Environment builder"
 optional = false
 python-versions = ">=3.8"
 groups = ["dev"]
 files = [
-    {file = "virtualenv-20.31.2-py3-none-any.whl", hash = "sha256:36efd0d9650ee985f0cad72065001e66d49a6f24eb44d98980f630686243cf11"},
-    {file = "virtualenv-20.31.2.tar.gz", hash = "sha256:e10c0a9d02835e592521be48b332b6caee6887f332c111aa79a09b9e79efc2af"},
+    {file = "virtualenv-20.33.0-py3-none-any.whl", hash = "sha256:106b6baa8ab1b526d5a9b71165c85c456fbd49b16976c88e2bc9352ee3bc5d3f"},
+    {file = "virtualenv-20.33.0.tar.gz", hash = "sha256:47e0c0d2ef1801fce721708ccdf2a28b9403fa2307c3268aebd03225976f61d2"},
 ]
 
 [package.dependencies]
