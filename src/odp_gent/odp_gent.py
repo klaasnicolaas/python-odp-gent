@@ -15,7 +15,7 @@ from yarl import URL
 from .exceptions import ODPGentConnectionError, ODPGentError
 from .models import BlueBike, Garage, ParkAndRide, Partago
 
-VERSION = metadata.version(__package__)
+VERSION = metadata.version("odp-gent")
 
 
 @dataclass
