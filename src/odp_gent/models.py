@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 from dataclasses import dataclass
 from datetime import datetime
+from math import isfinite
 from typing import Any
 
 import pytz
@@ -248,3 +249,91 @@ class Vehicle:
             fuel_type=data["fuelType"],
             transmission_type=data["transmissionType"],
         )
+
+
+@dataclass(frozen=True)
+class ParkingFacility:
+    """Original facility identity and nullable measurements from the live feed.
+
+    Unlike a portal recordid, fields.id identifies the facility independently
+    of occupancy refreshes. Counts cover general parking, not accessible bays.
+    """
+
+    facility_id: str
+    name: str
+    parking_type: str
+    longitude: float
+    latitude: float
+    updated_at: datetime | None
+    total_capacity: int | None
+    free_space: int | None
+    is_open: bool | None
+    temporary_closed: bool | None
+
+    @classmethod
+    def from_dict(cls, data: dict[str, Any]) -> ParkingFacility:
+        """Parse source claims without substituting retrieval time or zero."""
+        fields = data["fields"]
+        identity, name, parking_type = (
+            fields.get(key) for key in ("id", "name", "type")
+        )
+        if any(
+            not isinstance(value, str) or not value.strip()
+            for value in (identity, name, parking_type)
+        ):
+            msg = "Missing parking facility identity, name or type"
+            raise ValueError(msg)
+        geometry = data["geometry"]
+        coordinates = geometry["coordinates"]
+        if (
+            geometry["type"] != "Point"
+            or len(coordinates) != 2
+            or any(
+                type(value) not in (float, int) or not isfinite(value)
+                for value in coordinates
+            )
+            or not -180 <= coordinates[0] <= 180
+            or not -90 <= coordinates[1] <= 90
+        ):
+            msg = "Invalid parking facility coordinates"
+            raise ValueError(msg)
+        measured_at = None
+        if fields.get("lastupdate"):
+            try:
+                measured_at = datetime.fromisoformat(fields["lastupdate"])
+            except ValueError:
+                measured_at = None
+            if measured_at is not None and measured_at.utcoffset() is None:
+                measured_at = None
+        return cls(
+            facility_id=identity,
+            name=name,
+            parking_type=parking_type,
+            longitude=coordinates[0],
+            latitude=coordinates[1],
+            updated_at=measured_at,
+            total_capacity=_parking_count(fields.get("totalcapacity")),
+            free_space=_parking_count(fields.get("availablecapacity")),
+            is_open=_parking_flag(fields.get("isopennow")),
+            temporary_closed=_parking_flag(fields.get("temporaryclosed")),
+        )
+
+
+def _parking_count(value: object) -> int | None:
+    """Reject lossy, negative and boolean capacity values."""
+    if value is None:
+        return None
+    if type(value) is not int or value < 0:
+        msg = "Invalid parking count"
+        raise ValueError(msg)
+    return value
+
+
+def _parking_flag(value: object) -> bool | None:
+    """Keep missing source health/open flags unknown."""
+    if value is None:
+        return None
+    if type(value) not in (int, bool) or value not in (0, 1):
+        msg = "Invalid parking flag"
+        raise ValueError(msg)
+    return bool(value)

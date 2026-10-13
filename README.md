@@ -136,6 +136,12 @@ To update the [syrupy](https://github.com/tophat/syrupy) snapshot tests:
 uv run pytest --snapshot-update
 ```
 
+### Complete parking feed
+
+`await client.parking_collection()` retrieves every page of `bezetting-parkeergarages-real-time` and returns `Collection(records, total_count, pages_fetched, complete)`. Its `ParkingFacility` records use the original `fields.id` as `facility_id`; the existing limited `garages()` API keeps its portal `recordid` behavior for compatibility. Pagination rejects missing/duplicate facility IDs, changing totals, short pages and safety-ceiling truncation (`max_records=10000`).
+
+Measurements keep the source `lastupdate` timezone and general counts. Missing or invalid/undated times stay `None`, never the retrieval time; unknown counts/flags stay `None`, measured zero stays zero. The feed includes different parking types; consumers choose their own selection. The former separate P+R dataset returned 404 when checked on 2026-10-13; this method retrieves the current unified live feed instead.
+
 ## License
 
 MIT License

@@ -13,9 +13,19 @@ from aiohttp.hdrs import METH_GET
 from yarl import URL
 
 from .exceptions import ODPGentConnectionError, ODPGentError
-from .models import BlueBike, Garage, ParkAndRide, Partago
+from .models import BlueBike, Garage, ParkAndRide, ParkingFacility, Partago
 
 VERSION = metadata.version("odp-gent")
+
+
+@dataclass(frozen=True)
+class Collection:
+    """A count- and identity-checked complete parking source selection."""
+
+    records: list[ParkingFacility]
+    total_count: int
+    pages_fetched: int
+    complete: bool
 
 
 @dataclass
@@ -96,6 +106,62 @@ class ODPGent:
             )
 
         return await response.json()
+
+    async def parking_collection(
+        self, *, page_size: int = 100, max_records: int = 10000
+    ) -> Collection:
+        """Fetch the entire current parking feed, never a silently capped list.
+
+        The ceiling is a failure boundary, not evidence of completeness. Portal
+        record IDs can change on every refresh; uniqueness uses fields.id.
+        """
+        if (
+            type(page_size) is not int
+            or not 1 <= page_size <= 100
+            or type(max_records) is not int
+            or not 1 <= max_records <= 10000
+        ):
+            msg = "Invalid parking collection limits"
+            raise ValueError(msg)
+        records: list[ParkingFacility] = []
+        seen: set[str] = set()
+        total: int | None = None
+        pages = 0
+        while True:
+            response = await self._request(
+                "search/",
+                params={
+                    "dataset": "bezetting-parkeergarages-real-time",
+                    "rows": page_size,
+                    "start": len(records),
+                    "sort": "id",
+                },
+            )
+            pages += 1
+            try:
+                count, items = response["nhits"], response["records"]
+                if (
+                    type(count) is not int
+                    or not 0 <= count <= max_records
+                    or (total is not None and count != total)
+                    or not isinstance(items, list)
+                    or len(items) != min(page_size, count - len(records))
+                ):
+                    msg = "Incomplete or changing parking collection"
+                    raise ODPGentError(msg)
+                total = count
+                for item in items:
+                    record = ParkingFacility.from_dict(item)
+                    if record.facility_id in seen:
+                        msg = "Duplicate parking facility ID"
+                        raise ODPGentError(msg)
+                    seen.add(record.facility_id)
+                    records.append(record)
+            except (KeyError, TypeError, ValueError, AttributeError) as error:
+                msg = "Invalid or incomplete parking collection"
+                raise ODPGentError(msg) from error
+            if len(records) == total:
+                return Collection(records, total, pages, complete=True)
 
     async def garages(self, limit: int = 10) -> list[Garage]:
         """Get list of parking garages.
