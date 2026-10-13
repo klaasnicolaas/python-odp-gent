@@ -40,7 +40,7 @@
     BlueBike(
       bikes_available=45,
       bikes_in_use=15,
-      last_update=datetime.datetime(2023, 5, 6, 20, 34, 59, tzinfo=<DstTzInfo 'Europe/Brussels' LMT+0:18:00 STD>),
+      last_update=datetime.datetime(2023, 5, 6, 20, 34, 59, tzinfo=datetime.timezone.utc),
       latitude=51.056083,
       longitude=3.740194,
       name='Station Gent-Dampoort',
@@ -50,7 +50,7 @@
     BlueBike(
       bikes_available=45,
       bikes_in_use=15,
-      last_update=datetime.datetime(2023, 5, 6, 20, 34, 59, tzinfo=<DstTzInfo 'Europe/Brussels' LMT+0:18:00 STD>),
+      last_update=datetime.datetime(2023, 5, 6, 20, 34, 59, tzinfo=datetime.timezone.utc),
       latitude=51.056083,
       longitude=3.740194,
       name='Station Gent-Dampoort',
@@ -60,7 +60,7 @@
     BlueBike(
       bikes_available=45,
       bikes_in_use=15,
-      last_update=datetime.datetime(2023, 5, 6, 20, 34, 59, tzinfo=<DstTzInfo 'Europe/Brussels' LMT+0:18:00 STD>),
+      last_update=datetime.datetime(2023, 5, 6, 20, 34, 59, tzinfo=datetime.timezone.utc),
       latitude=51.056083,
       longitude=3.740194,
       name='Station Gent-Dampoort',
@@ -70,7 +70,7 @@
     BlueBike(
       bikes_available=45,
       bikes_in_use=15,
-      last_update=datetime.datetime(2023, 5, 6, 20, 34, 59, tzinfo=<DstTzInfo 'Europe/Brussels' LMT+0:18:00 STD>),
+      last_update=datetime.datetime(2023, 5, 6, 20, 34, 59, tzinfo=datetime.timezone.utc),
       latitude=51.056083,
       longitude=3.740194,
       name='Station Gent-Dampoort',
@@ -158,7 +158,7 @@
 # name: test_partago
   list([
     Partago(
-      last_update=datetime.datetime(2023, 5, 7, 12, 0, 8, 601000, tzinfo=<UTC>),
+      last_update=datetime.datetime(2023, 5, 7, 12, 0, 8, 601000, tzinfo=datetime.timezone.utc),
       latitude=51.047994818648135,
       longitude=3.717662708201117,
       name='Partago Quark',
@@ -172,7 +172,7 @@
       ),
     ),
     Partago(
-      last_update=datetime.datetime(2023, 5, 7, 12, 0, 8, 601000, tzinfo=<UTC>),
+      last_update=datetime.datetime(2023, 5, 7, 12, 0, 8, 601000, tzinfo=datetime.timezone.utc),
       latitude=51.044021518441454,
       longitude=3.7530556155420487,
       name='Partago Theo',
@@ -186,7 +186,7 @@
       ),
     ),
     Partago(
-      last_update=datetime.datetime(2023, 5, 7, 12, 0, 8, 601000, tzinfo=<UTC>),
+      last_update=datetime.datetime(2023, 5, 7, 12, 0, 8, 601000, tzinfo=datetime.timezone.utc),
       latitude=51.03416087693723,
       longitude=3.7441249969609345,
       name='Partago Rox',
@@ -200,7 +200,7 @@
       ),
     ),
     Partago(
-      last_update=datetime.datetime(2023, 5, 7, 12, 0, 8, 601000, tzinfo=<UTC>),
+      last_update=datetime.datetime(2023, 5, 7, 12, 0, 8, 601000, tzinfo=datetime.timezone.utc),
       latitude=51.0628833078908,
       longitude=3.7313283733281333,
       name='Partago Maxwell',
@@ -214,7 +214,7 @@
       ),
     ),
     Partago(
-      last_update=datetime.datetime(2023, 5, 7, 12, 0, 8, 601000, tzinfo=<UTC>),
+      last_update=datetime.datetime(2023, 5, 7, 12, 0, 8, 601000, tzinfo=datetime.timezone.utc),
       latitude=51.0443421974434,
       longitude=3.760778443329769,
       name='Partago Wez',
