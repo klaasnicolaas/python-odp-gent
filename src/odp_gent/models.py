@@ -8,8 +8,6 @@ from datetime import datetime
 from math import isfinite
 from typing import Any
 
-import pytz
-
 
 @dataclass
 class Garage:
@@ -169,10 +167,7 @@ class BlueBike:
             spot_type=int(attr.get("type")),
             bikes_in_use=attr.get("bikes_in_use"),
             bikes_available=attr.get("bikes_available"),
-            last_update=datetime.strptime(
-                attr.get("last_seen"),
-                "%Y-%m-%dT%H:%M:%S%z",
-            ).replace(tzinfo=pytz.timezone("Europe/Brussels")),
+            last_update=_aware_timestamp(attr["last_seen"]),
             longitude=float(attr.get("longitude")),
             latitude=float(attr.get("latitude")),
         )
@@ -211,10 +206,7 @@ class Partago:
             vehicle_type=Vehicle.from_dict(json.loads(attr.get("vehicleinformation"))),
             picture_url=None if attr.get("picture") == "null" else attr.get("picture"),
             station_type=attr.get("stationtype"),
-            last_update=datetime.strptime(
-                data["record_timestamp"],
-                "%Y-%m-%dT%H:%M:%S.%fZ",
-            ).replace(tzinfo=pytz.utc),
+            last_update=_aware_timestamp(data["record_timestamp"]),
             longitude=geo[0],
             latitude=geo[1],
         )
@@ -337,3 +329,12 @@ def _parking_flag(value: object) -> bool | None:
         msg = "Invalid parking flag"
         raise ValueError(msg)
     return bool(value)
+
+
+def _aware_timestamp(value: str) -> datetime:
+    """Preserve the source offset and reject timestamps without one."""
+    measured_at = datetime.fromisoformat(value)
+    if measured_at.utcoffset() is None:
+        msg = "Source timestamp must include a timezone"
+        raise ValueError(msg)
+    return measured_at

@@ -136,6 +136,10 @@ To update the [syrupy](https://github.com/tophat/syrupy) snapshot tests:
 uv run pytest --snapshot-update
 ```
 
+### Source timestamps
+
+Dates use Python's standard-library `datetime`; this package does not require `pytz`. BlueBike preserves the offset in `last_seen` instead of overwriting it with a Brussels timezone (which previously introduced a historical 18-minute offset). Partago preserves the UTC `Z` suffix and fractional seconds. Both reject timestamps without a timezone.
+
 ### Complete parking feed
 
 `await client.parking_collection()` retrieves every page of `bezetting-parkeergarages-real-time` and returns `Collection(records, total_count, pages_fetched, complete)`. Its `ParkingFacility` records use the original `fields.id` as `facility_id`; the existing limited `garages()` API keeps its portal `recordid` behavior for compatibility. Pagination rejects missing/duplicate facility IDs, changing totals, short pages and safety-ceiling truncation (`max_records=10000`).
