@@ -9,7 +9,7 @@ from odp_gent import ODPGent
 
 
 @pytest.fixture(name="odp_gent_client")
-async def client() -> AsyncGenerator[ODPGent, None]:
+async def client() -> AsyncGenerator[ODPGent]:
     """ODP Gent client fixture."""
     async with (
         ClientSession() as session,
